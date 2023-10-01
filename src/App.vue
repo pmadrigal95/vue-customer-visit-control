@@ -3,5 +3,9 @@ import AppHeaderVue from "@/components/AppHeader.vue";
 </script>
 
 <template>
-    <router-view />
+    <main>
+        <section>
+            <router-view />
+        </section>
+    </main>
 </template>

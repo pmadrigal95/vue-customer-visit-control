@@ -3,32 +3,18 @@ import useAuthUser from "@/composables/UseAuthUser";
 
 const routes = [
   {
-    name: "EmailConfirmation",
-    path: "/email-confirmation",
-    component: () => import("@/pages/EmailConfirmation.vue"),
-  },
-  {
     name: "Home",
     path: "/",
-    component: () => import("@/pages/Home.vue"),
-  },
-  {
-    name: "Me",
-    path: "/me",
     meta: {
       requiresAuth: true,
     },
-    component: () => import("@/pages/Me.vue"),
+    component: () => import("@/pages/Home.vue"),
   },
   {
-    name: "Login",
-    path: "/login",
-    component: () => import("@/pages/Login.vue"),
-  },
-  {
-    name: "ForgotPassword",
-    path: "/forgotPassword",
-    component: () => import("@/pages/ForgotPassword.vue"),
+    name: "Authentication",
+    path: "/Authentication",
+    component: () =>
+      import("@/views/authentication/login/LoginViewComponent.vue"),
   },
   {
     name: "Logout",
@@ -40,10 +26,16 @@ const routes = [
     },
   },
   {
-    name: "Register",
-    path: "/register",
-    component: () => import("@/pages/Register.vue"),
+    name: "404",
+    path: "/404",
+    component: () => import("@/views/error/NotFoundViewComponent.vue"),
   },
+  { path: '/:pathMatch(.*)*', component: () => import("@/views/error/NotFoundViewComponent.vue"), }
+  // {
+  //   name: "Register",
+  //   path: "/register",
+  //   component: () => import("@/pages/Register.vue"),
+  // },
 ];
 
 const router = createRouter({
@@ -58,7 +50,7 @@ router.beforeEach((to) => {
     to.meta.requiresAuth &&
     !Object.keys(to.query).includes("fromEmail")
   ) {
-    return { name: "Login" };
+    return { name: "Authentication" };
   }
 });
 

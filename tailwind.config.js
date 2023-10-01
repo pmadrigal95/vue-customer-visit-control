@@ -9,7 +9,11 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'montserrat': ['Montserrat', 'sans-serif'],
+      },
+    },
   },
   plugins: [
     require('flowbite/plugin')
