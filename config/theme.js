@@ -5,7 +5,6 @@ export default {
 
   light: {
     background: "#EEF4F9",
-    default: "#07103B",
   },
 
   /**

@@ -6,9 +6,10 @@ import BaseNavbar from '@/components/core/layout/BaseNavbar.vue';
 <template>
     <section class="antialiased">
         <BaseNavbar />
-        <main class="p-4 md:ml-64 h-full w-full pt-20">
-            <slot name="content"></slot>
-
+        <main class="h-full w-full pt-20">
+            <section class="container mx-auto">
+                <slot name="content"></slot>
+            </section>
         </main>
 
     </section>

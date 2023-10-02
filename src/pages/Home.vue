@@ -8,7 +8,9 @@
   </dropdown> -->
   <AppTemplateComponent>
     <template v-slot:content>
-      <p>hola</p>
+      
+        <p>hola 2</p>
+      
     </template>
   </AppTemplateComponent>
 </template>
