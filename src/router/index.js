@@ -8,7 +8,7 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
-    component: () => import("@/pages/Home.vue"),
+    component: () => import("@/views/home/HomeViewComponent.vue"),
   },
   {
     name: "Authentication",
