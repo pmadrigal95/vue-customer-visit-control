@@ -1,4 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+
+
+import theme from './config/theme.js';
+
 module.exports = {
   purge: [
     './index.html',
@@ -10,6 +14,12 @@ module.exports = {
   content: [],
   theme: {
     extend: {
+      colors: {
+        ...theme.light,
+        ...theme.brand,
+        ...theme.neutrals,
+        ...theme.status,
+      },
       fontFamily: {
         'montserrat': ['Montserrat', 'sans-serif'],
       },

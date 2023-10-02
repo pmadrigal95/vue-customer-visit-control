@@ -6,16 +6,14 @@
       <list-group-item>Item #3</list-group-item>
     </list-group>
   </dropdown> -->
-  <AuthenticationTemplateComponent>
+  <AppTemplateComponent>
     <template v-slot:content>
-      hola
-  </template>
-  </AuthenticationTemplateComponent>
-
- 
+      <p>hola</p>
+    </template>
+  </AppTemplateComponent>
 </template>
 <script setup>
-import AuthenticationTemplateComponent from '@/layouts/templates/authentication/AuthenticationTemplateComponent.vue';
+import AppTemplateComponent from '@/layouts/templates/app/AppTemplateComponent.vue';
 
 // import { Dropdown, ListGroup, ListGroupItem } from 'flowbite-vue'
 

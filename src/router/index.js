@@ -22,7 +22,7 @@ const routes = [
     beforeEnter: async () => {
       const { logout } = useAuthUser();
       await logout();
-      return { name: "Home" };
+      return { name: "Authentication" };
     },
   },
   {

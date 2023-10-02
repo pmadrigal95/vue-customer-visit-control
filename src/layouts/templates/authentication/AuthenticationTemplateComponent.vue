@@ -110,7 +110,7 @@ const options = {
 <template>
 	<section class="h-screen w-screen flex flex-row">
 
-		<section class="h-screen basis-3/5 hidden md:block bg-yellow-100">
+		<section class="h-screen basis-3/5 hidden md:block bg-black">
 
 			<section class="z-1 absolute">
 				<vue-particles id="tsparticles" class="h-screen w-full" :particlesInit="particlesInit"
@@ -123,15 +123,15 @@ const options = {
 						:src="imagen"
 						alt="" width="500" height="500" />
 					<article class="pt-28 dark:bg-black">
-						<h2 class="mx-auto text-4xl font-semibold text-white text-center dark:text-blueProgress600 ">
+						<h2 class="mx-auto text-4xl font-semibold text-silver900 text-center">
 							{{ title }}</h2>
-						<p class="text-lg text-white text-center pt-2 pb-8 dark:text-white">{{ msg }}</p>
+						<p class="text-lg text-silver900 text-center pt-2 pb-8">{{ msg }}</p>
 					</article>
 				</div>
 			</section>
 		</section>
 
-		<section class="basis-2/5 z-50 relative bg-white">
+		<section class="md:basis-2/5 z-50 relative bg-white">
 			<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 				<div
 					class="w-full bg-white rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
