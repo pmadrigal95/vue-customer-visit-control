@@ -1,36 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import useAuthUser from "@/composables/UseAuthUser";
 
+import viewRoutes from '@/views/router';
+
 const routes = [
-  {
-    name: "Home",
-    path: "/",
-    meta: {
-      requiresAuth: true,
-    },
-    component: () => import("@/views/home/HomeViewComponent.vue"),
-  },
-  {
-    name: "Authentication",
-    path: "/Authentication",
-    component: () =>
-      import("@/views/authentication/login/LoginViewComponent.vue"),
-  },
-  {
-    name: "Logout",
-    path: "/logout",
-    beforeEnter: async () => {
-      const { logout } = useAuthUser();
-      await logout();
-      return { name: "Authentication" };
-    },
-  },
-  {
-    name: "404",
-    path: "/404",
-    component: () => import("@/views/error/NotFoundViewComponent.vue"),
-  },
-  { path: '/:pathMatch(.*)*', component: () => import("@/views/error/NotFoundViewComponent.vue"), }
+  ...viewRoutes,
+  
   // {
   //   name: "Register",
   //   path: "/register",

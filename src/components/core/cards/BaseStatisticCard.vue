@@ -7,7 +7,7 @@ defineProps({
  },
 
  count: {
-  type: String,
+  type: [String, Number],
   required: true,
  },
 });
@@ -16,7 +16,7 @@ defineProps({
 
 <template>
     <div
-        class="flex flex-col px-6 py-10 overflow-hidden bg-white hover:bg-gradient-to-br hover:from-orange900 hover:via-blue800 hover:to-blue900 rounded-xl shadow-lg duration-300 hover:shadow-2xl group">
+        class="flex flex-col px-6 py-10 overflow-hidden bg-white hover:bg-gradient-to-br hover:from-orange900 hover:via-blue900 hover:to-blue800 rounded-xl shadow-lg duration-300 hover:shadow-2xl group">
         <div class="flex flex-row justify-between items-center">
             <div class="px-4 py-4 bg-gray-300  rounded-xl bg-opacity-30">
                 <slot name="content"></slot>

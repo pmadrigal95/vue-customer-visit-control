@@ -1,14 +1,14 @@
 import useSupabase from "@/composables/UseSupabase";
 
-export default function UseCustomer() {
+export default function UseVisitControl() {
     const { supabase } = useSupabase();
 
     /**
    * Count
    */
-    const customerCount = async () => {
+    const visitControlCount = async () => {
         const { count, error } = await supabase
-            .from('Customer')
+            .from('visitControl')
             .select('id', { count: 'exact', head: true })
         if (error) throw error;
         return count;
@@ -16,6 +16,6 @@ export default function UseCustomer() {
 
 
     return {
-        customerCount
+        visitControlCount
     };
 }
