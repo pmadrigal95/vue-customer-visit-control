@@ -1,25 +1,25 @@
 <script setup>
-import { loadFull } from "tsparticles";
+import { loadFull } from 'tsparticles';
 
 const props = defineProps({
  title: {
   type: String,
-  default: "Fox Paw Track",
+  default: 'Fox Paw Track',
  },
 
  msg: {
   type: String,
-  default: "Control de visitas: ¡tu aliado en el campo!",
+  default: 'Control de visitas: ¡tu aliado en el campo!',
  },
 
  imagen: {
   type: String,
-  default: "https://ztdqsurxcyrlabzyhrud.supabase.co/storage/v1/object/public/src/images/logoFox.png",
+  default: 'https://ztdqsurxcyrlabzyhrud.supabase.co/storage/v1/object/public/src/images/logoFox.png',
  },
 
  arrayColors: {
 	type: Array,
-	default: ["#273A71", "#CCD4E7", "#FE8800", "#FFFFFF", "#ED7501", "#07103B"],
+	default: ['#273A71', '#CCD4E7', '#FE8800', '#FFFFFF', '#ED7501', '#07103B'],
  }
 });
 
@@ -28,7 +28,7 @@ const particlesInit = async engine => {
 };
 
 const particlesLoaded = async container => {
-	console.log("Particles container loaded", container);
+	console.log('Particles container loaded', container);
 };
 
 const options = {
@@ -39,7 +39,7 @@ const options = {
 			value: 50
 		},
 		shape: {
-			type: "circle"
+			type: 'circle'
 		},
 		opacity: {
 			value: 0.5
@@ -54,30 +54,30 @@ const options = {
 		move: {
 			enable: true,
 			speed: 3,
-			direction: "top",
+			direction: 'top',
 			outModes: {
-				default: "out",
-				top: "destroy",
-				bottom: "none"
+				default: 'out',
+				top: 'destroy',
+				bottom: 'none'
 			}
 		}
 	},
 	interactivity: {
-		detectsOn: "canvas",
+		detectsOn: 'canvas',
 		events: {
 			resize: true
 		}
 	},
 	style: {
-		filter: "blur(50px)"
+		filter: 'blur(50px)'
 	},
 	detectRetina: true,
 	themes: [
 		{
-			name: "light",
+			name: 'light',
 			default: {
 				value: true,
-				mode: "light"
+				mode: 'light'
 			},
 			options: {
 				particles: {
@@ -87,9 +87,23 @@ const options = {
 				}
 			}
 		},
+		{
+        name: 'dark',
+        default: {
+          value: true,
+          mode: 'dark'
+        },
+        options: {
+          particles: {
+            color: {
+				value: props.arrayColors
+            }
+          }
+        }
+      }
 	],
 	emitters: {
-		direction: "top",
+		direction: 'top',
 		position: {
 			x: 50,
 			y: 150
@@ -108,34 +122,34 @@ const options = {
 
 
 <template>
-	<section class="h-screen w-screen flex flex-row">
+	<section class='h-screen w-screen flex flex-row'>
 
-		<section class="h-screen basis-3/5 hidden md:block bg-black">
+		<section class='h-screen basis-3/5 hidden md:block bg-black'>
 
-			<section class="z-1 absolute">
-				<vue-particles id="tsparticles" class="h-screen w-full" :particlesInit="particlesInit"
-					:particlesLoaded="particlesLoaded" :options="options" />
+			<section class='z-1 absolute'>
+				<vue-particles id='tsparticles' class='h-screen w-full' :particlesInit='particlesInit'
+					:particlesLoaded='particlesLoaded' :options='options' />
 			</section>
 
-			<section class="z-50 relative bg-gradient-to-t from-black/60">
-				<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0  transition duration-150 ease-in-out hover:-translate-y-1 hover:scale-110 ">
-					<img class="rounded-full"
-						:src="imagen"
-						alt="" width="500" height="500" />
-					<article class="pt-28">
-						<h2 class="mx-auto text-4xl font-semibold text-silver900 text-center">
+			<section class='z-50 relative bg-gradient-to-t from-black/60'>
+				<div class='flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0  transition duration-150 ease-in-out hover:-translate-y-1 hover:scale-110 '>
+					<img class='rounded-full'
+						:src='imagen'
+						alt='' width='500' height='500' />
+					<article class='pt-28'>
+						<h2 class='mx-auto text-4xl font-semibold text-silver900 text-center'>
 							{{ title }}</h2>
-						<p class="text-lg text-silver900 text-center pt-2 pb-8">{{ msg }}</p>
+						<p class='text-lg text-silver900 text-center pt-2 pb-8'>{{ msg }}</p>
 					</article>
 				</div>
 			</section>
 		</section>
 
-		<section class="md:basis-2/5 z-50 relative bg-white">
-			<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+		<section class='md:basis-2/5 z-50 relative bg-white'>
+			<div class='flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0'>
 				<div
-					class="w-full bg-white rounded-lg md:mt-0 sm:max-w-md xl:p-0">
-					<slot name="content"></slot>
+					class='w-full bg-white rounded-lg md:mt-0 sm:max-w-md xl:p-0'>
+					<slot name='content'></slot>
 				</div>
 			</div>
 		</section>
