@@ -44,7 +44,7 @@ const handleLogin = async () => {
                         src="https://ztdqsurxcyrlabzyhrud.supabase.co/storage/v1/object/public/src/images/logoFox.png"
                         alt="Your Company" />
                     <h2
-                        class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-blue900 dark:text-orange900">
+                        class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-blue900">
                         Bienvenido a Fox Paw Track</h2>
                     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                         <form class="space-y-6" @submit.prevent="handleLogin()">
@@ -58,7 +58,7 @@ const handleLogin = async () => {
                             </div>
                             <div>
                                 <button type="submit"
-                                    class="w-full text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue800 dark:hover:bg-blue900 dark:focus:ring-orange900">Iniciar
+                                    class="w-full text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center">Iniciar
                                     sesión</button>
                             </div>
                         </form>

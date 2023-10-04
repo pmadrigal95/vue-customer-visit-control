@@ -122,7 +122,7 @@ const options = {
 					<img class="rounded-full"
 						:src="imagen"
 						alt="" width="500" height="500" />
-					<article class="pt-28 dark:bg-black">
+					<article class="pt-28">
 						<h2 class="mx-auto text-4xl font-semibold text-silver900 text-center">
 							{{ title }}</h2>
 						<p class="text-lg text-silver900 text-center pt-2 pb-8">{{ msg }}</p>
@@ -134,7 +134,7 @@ const options = {
 		<section class="md:basis-2/5 z-50 relative bg-white">
 			<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 				<div
-					class="w-full bg-white rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+					class="w-full bg-white rounded-lg md:mt-0 sm:max-w-md xl:p-0">
 					<slot name="content"></slot>
 				</div>
 			</div>
