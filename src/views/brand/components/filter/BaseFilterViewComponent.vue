@@ -39,6 +39,25 @@ const nextPage  = () => {
     getBrandFilter();
 };
 
+const deleteItem = async (id) => {
+    try {
+        loading.value = true;
+        await useBrand().brandDelete({id});
+        
+        const response = await useBrand().brandFilter({
+            query: { page: list.value.page },
+        });
+
+        list.value.data = [...response.props.data];
+        list.value.count = response.props.count;
+        list.value.page = response.props.page;
+        loading.value = false;
+    } catch (error) {
+        loading.value = false;
+        alert(error.message);
+    }
+};
+
 onMounted(() => {
     getBrandFilter();
 });
@@ -66,7 +85,7 @@ onMounted(() => {
                 </div>
             </section>
 
-            <BaseListViewComponent :list="list.data" />
+            <BaseListViewComponent :list="list.data" :fnDelete="deleteItem"/>
 
             <div class="flex flex-row justify-end pt-11" v-if="list.count > list.data.length">
                 <button type="button" @click="nextPage"

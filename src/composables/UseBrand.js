@@ -47,7 +47,7 @@ export default function UseBrand() {
       .from("Brand")
       .select("id, name, description", { count: "exact" })
       .order("name", { ascending: true })
-      .ilike('name', `%${name}%`)
+      .ilike("name", `%${name}%`);
 
     if (error) throw error;
 
@@ -59,24 +59,62 @@ export default function UseBrand() {
     };
   };
 
-    /**
+  /**
    * Insert
    */
-    const brandInsert = async ({ name , description }) => {
+  const brandInsert = async ({ name, description }) => {
+    const { error } = await supabase
+      .from("Brand")
+      .insert({ name, description });
+
+    if (error) throw error;
+  };
+
+  /**
+   * GetById
+   */
+  const getBrandById = async ({ id }) => {
+    const { data, error } = await supabase
+      .from("Brand")
+      .select("id, name, description")
+      .eq("id", id);
+
+    if (error) throw error;
+
+    return data[0];
+  };
+
+  /**
+   * Update
+   */
+  const brandUpdate = async ({ id, name, description }) => {
+    const { error } = await supabase
+      .from("Brand")
+      .update({ name: name, description: description })
+      .eq("id", id);
+
+    if (error) throw error;
+  };
+
+    /**
+   * Delete
+   */
+    const brandDelete = async ({ id }) => {
       const { error } = await supabase
-      .from('Brand')
-      .insert({ name , description })
+        .from("Brand")
+        .delete()
+        .eq("id", id);
   
       if (error) throw error;
     };
-
-
-
 
   return {
     brandCount,
     brandFilter,
     brandSearch,
     brandInsert,
+    getBrandById,
+    brandUpdate,
+    brandDelete,
   };
 }

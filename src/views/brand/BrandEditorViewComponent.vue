@@ -1,14 +1,14 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
-
-import { Input, Textarea  } from 'flowbite-vue';
-
-import BaseSkeletonLoader from '@/components/core/loaders/BaseSkeletonLoader.vue';
 
 // Use necessary composables
 const router = useRouter();
 import useBrand from "@/composables/UseBrand";
+
+import { Input, Textarea } from 'flowbite-vue';
+
+import BaseSkeletonLoader from '@/components/core/loaders/BaseSkeletonLoader.vue';
 
 import BaseBackButton from '@/components/core/buttons/BaseBackButton.vue';
 
@@ -22,7 +22,9 @@ const form = ref({
 
 let loading = ref(false);
 
-// call the proper insert method from the AuthUser composable
+const routerParams = ref(router.currentRoute.value.params.Id);
+
+// call the proper insert method from the composable
 // on the submit of the form
 const insert = async () => {
     try {
@@ -35,6 +37,45 @@ const insert = async () => {
         alert(error.message);
     }
 };
+
+const getById = async () => {
+    try {
+        loading.value = true;
+        const response = await useBrand().getBrandById({id: routerParams.value});
+        form.value = response;
+        loading.value = false;
+    } catch (error) {
+        loading.value = false;
+        alert(error.message);
+    }
+}
+
+// call the proper insert method from the composable
+// on the submit of the form
+const update = async () => {
+    try {
+        loading.value = true;
+        await useBrand().brandUpdate(form.value);
+        router.push({ name: "BrandFilterViewComponent" });
+    } catch (error) {
+        loading.value = false;
+        alert(error.message);
+    }
+};
+
+const callToAction = () => {
+    if (routerParams.value) {
+        update();
+    } else {
+        insert();
+    }
+}
+
+onMounted(() => {
+    if (routerParams.value) {
+        getById();
+    }
+});
 </script>
 
 <template>
@@ -44,13 +85,13 @@ const insert = async () => {
             <section class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12" v-if="!loading">
                 <h2 class="mb-10 text-left text-4xl font-bold leading-9 tracking-tight text-blue900">
                     Provedor</h2>
-                <form class="space-y-6" @submit.prevent="insert()">
+                <form class="space-y-6" @submit.prevent="callToAction()">
                     <div>
-                        <Input v-model="form.name" placeholder="Ingresa su nombre" label="Nombre" required
-                            type="text" />
+                        <Input v-model="form.name" placeholder="Ingresa su nombre" label="Nombre" required type="text" />
                     </div>
                     <div>
-                        <Textarea v-model="form.description" rows="4" placeholder="Ingresa su descripción" label="Descripción" />
+                        <Textarea v-model="form.description" rows="4" placeholder="Ingresa su descripción"
+                            label="Descripción" />
                     </div>
                     <div>
                         <button type="submit"

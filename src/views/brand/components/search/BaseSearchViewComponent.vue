@@ -46,6 +46,15 @@ const Search = () => {
     }
 };
 
+const deleteItem = async (id) => {
+    try {
+        await useBrand().brandDelete({id});
+        Search();
+    } catch (error) {
+        alert(error.message);
+    }
+};
+
 </script>
 
 <template>
@@ -69,7 +78,7 @@ const Search = () => {
                 </div>
             </section>
 
-            <BaseListViewComponent :list="list.data" v-if="list.data.length > 0" />
+            <BaseListViewComponent :fnDelete="deleteItem" :list="list.data" v-if="list.data.length > 0" />
 
             <section v-else>
                 <section class="flex flex-col py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
