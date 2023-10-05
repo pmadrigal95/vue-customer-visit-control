@@ -1,17 +1,22 @@
 <script setup>
+
+import BaseBackButton from '@/components/core/buttons/BaseBackButton.vue';
+
 import AppTemplateComponent from '@/layouts/templates/app/AppTemplateComponent.vue';
 
 import BaseHeaderViewComponent from '@/components/core/display/BaseHeaderViewComponent.vue';
 
-import BaseFilterViewComponent from '@/views/brand/components/filter/BaseFilterViewComponent.vue';
+import BaseSearchViewComponent from '@/views/brand/components/search/BaseSearchViewComponent.vue';
+
 
 </script>
 
 <template>
     <AppTemplateComponent>
         <template v-slot:content>
+            <BaseBackButton redirect="BrandFilterViewComponent" />
             <BaseHeaderViewComponent title="Provedores" />
-            <BaseFilterViewComponent />
+            <BaseSearchViewComponent />
         </template>
     </AppTemplateComponent>
 </template>

@@ -1,5 +1,7 @@
 <script setup>
 import BaseNavbar from '@/components/core/layout/BaseNavbar.vue';
+
+import BaseNavegationBottom from '@/components/core/layout/BaseNavegationBottom.vue';
 </script>
 
 
@@ -11,6 +13,5 @@ import BaseNavbar from '@/components/core/layout/BaseNavbar.vue';
                 <slot name="content"></slot>
             </section>
         </main>
-
     </section>
 </template>

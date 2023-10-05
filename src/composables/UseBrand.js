@@ -39,8 +39,44 @@ export default function UseBrand() {
     };
   };
 
+  /**
+   * Search
+   */
+  const brandSearch = async ({ query: { name } }) => {
+    const { data, count, error } = await supabase
+      .from("Brand")
+      .select("id, name, description", { count: "exact" })
+      .order("name", { ascending: true })
+      .ilike('name', `%${name}%`)
+
+    if (error) throw error;
+
+    return {
+      props: {
+        data: data,
+        count: count,
+      },
+    };
+  };
+
+    /**
+   * Insert
+   */
+    const brandInsert = async ({ name , description }) => {
+      const { error } = await supabase
+      .from('Brand')
+      .insert({ name , description })
+  
+      if (error) throw error;
+    };
+
+
+
+
   return {
     brandCount,
     brandFilter,
+    brandSearch,
+    brandInsert,
   };
 }
