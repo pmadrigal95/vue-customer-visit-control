@@ -27,7 +27,7 @@ const routes = [
       requiresAuth: true,
     },
     component: () => import("@/views/brand/BrandEditorViewComponent.vue"),
-},
+  },
 ];
 
 export default routes;
