@@ -2,6 +2,8 @@ import useSupabase from "@/composables/UseSupabase";
 
 import { basePaginationHelper } from "@/helpers/basePaginationHelper";
 
+import { selectMapper } from "@/infrastructure/mappers/selectMapper";
+
 export default function UseBrand() {
   const { supabase } = useSupabase();
 
@@ -37,6 +39,24 @@ export default function UseBrand() {
         page: +page,
       },
     };
+  };
+
+  /**
+   * Select
+   */
+  const brandSelect = async () => {
+    const { data, error } = await supabase
+      .from("Brand")
+      .select("id, name", { count: "exact" })
+      .order("id", { ascending: false });
+
+    if (error) throw error;
+
+    return selectMapper.$_selectMapper({
+      array: data,
+      value: "id",
+      name: "name",
+    });
   };
 
   /**
@@ -96,17 +116,14 @@ export default function UseBrand() {
     if (error) throw error;
   };
 
-    /**
+  /**
    * Delete
    */
-    const brandDelete = async ({ id }) => {
-      const { error } = await supabase
-        .from("Brand")
-        .delete()
-        .eq("id", id);
-  
-      if (error) throw error;
-    };
+  const brandDelete = async ({ id }) => {
+    const { error } = await supabase.from("Brand").delete().eq("id", id);
+
+    if (error) throw error;
+  };
 
   return {
     brandCount,
@@ -116,5 +133,6 @@ export default function UseBrand() {
     getBrandById,
     brandUpdate,
     brandDelete,
+    brandSelect,
   };
 }

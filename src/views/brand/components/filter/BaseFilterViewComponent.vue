@@ -17,8 +17,6 @@ const list = ref({
 
 const getBrandFilter = async (page = list.value.page) => {
     try {
-        loading.value = true;
-
         const response = await useBrand().brandFilter({
             query: { page: page },
         });
@@ -27,10 +25,8 @@ const getBrandFilter = async (page = list.value.page) => {
         list.value.count = response.props.count;
         list.value.page = response.props.page;
 
-        loading.value = false;
     } catch (error) {
         alert(error.message);
-        loading.value = false;
     }
 };
 
@@ -41,7 +37,6 @@ const nextPage  = () => {
 
 const deleteItem = async (id) => {
     try {
-        loading.value = true;
         await useBrand().brandDelete({id});
         
         const response = await useBrand().brandFilter({
@@ -51,15 +46,15 @@ const deleteItem = async (id) => {
         list.value.data = [...response.props.data];
         list.value.count = response.props.count;
         list.value.page = response.props.page;
-        loading.value = false;
     } catch (error) {
-        loading.value = false;
         alert(error.message);
     }
 };
 
 onMounted(() => {
+    loading.value = true;
     getBrandFilter();
+    loading.value = false;
 });
 </script>
 

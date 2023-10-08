@@ -1,9 +1,9 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
-import useCustomer from "@/composables/UseCustomer";
+import useProduct from "@/composables/UseProduct";
 
-import BaseListViewComponent from "@/views/customer/components/shared/BaseListViewComponent.vue";
+import BaseListViewComponent from "@/views/product/components/shared/BaseListViewComponent.vue";
 
 import BaseSkeletonLoader from '@/components/core/loaders/BaseSkeletonLoader.vue';
 
@@ -15,15 +15,17 @@ const list = ref({
     page: 0,
 });
 
-const getCustomerFilter = async (page = list.value.page) => {
+const getProductFilter = async (page = list.value.page) => {
     try {
-        const response = await useCustomer().customerFilter({
+        const response = await useProduct().productFilter({
             query: { page: page },
         });
 
         list.value.data = [...list.value.data, ...response.props.data];
         list.value.count = response.props.count;
         list.value.page = response.props.page;
+
+        loading.value = false;
     } catch (error) {
         alert(error.message);
     }
@@ -31,14 +33,14 @@ const getCustomerFilter = async (page = list.value.page) => {
 
 const nextPage = () => {
     list.value.page++;
-    getCustomerFilter();
+    getProductFilter();
 };
 
 const deleteItem = async (id) => {
     try {
-        await useCustomer().customerDelete({id});
+        await useProduct().productDelete({id});
 
-        const response = await useCustomer().customerFilter({
+        const response = await useProduct().productFilter({
             query: { page: list.value.page },
         });
 
@@ -52,7 +54,7 @@ const deleteItem = async (id) => {
 
 onMounted(() => {
     loading.value = true;
-    getCustomerFilter();
+    getProductFilter();
     loading.value = false;
 });
 </script>
@@ -64,13 +66,13 @@ onMounted(() => {
         <section v-else class="relative">
             <section class="sticky -top-10 z-50 bg-white pb-1 pt-3">
                 <div class="flex flex-row justify-end gap-4 mb-4">
-                    <router-link :to="{ name: 'CustomerSearchViewComponent' }">
+                    <router-link :to="{ name: 'ProductSearchViewComponent' }">
                         <button
                             class="text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Buscar
                         </button>
                     </router-link>
-                    <router-link :to="{ name: 'CustomerEditorViewComponent' }">
+                    <router-link :to="{ name: 'ProductEditorViewComponent' }">
                         <button
                             class="text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Agregar
