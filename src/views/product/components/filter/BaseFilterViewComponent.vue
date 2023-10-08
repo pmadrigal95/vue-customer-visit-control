@@ -64,7 +64,7 @@ onMounted(() => {
         class="container mx-auto w-fulll h-full bg-white p-10 shadow-lg rounded-lg min-h-[308px] max-h-[608px] md:max-h-[768px] overflow-y-scroll custom-scrollBar">
         <BaseSkeletonLoader v-if="loading" />
         <section v-else class="relative">
-            <section class="sticky -top-10 z-50 bg-white pb-1 pt-3">
+            <section class="sticky -top-10 z-40 bg-white pb-1 pt-3">
                 <div class="flex flex-row justify-end gap-4 mb-4">
                     <router-link :to="{ name: 'ProductSearchViewComponent' }">
                         <button

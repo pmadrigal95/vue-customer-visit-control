@@ -64,7 +64,7 @@ const open = () => {
 
     <!-- drawer component -->
     <div id="drawer-disabled-backdrop"
-        class="fixed top-14 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-64"
+        class="fixed top-14 left-0 z-50 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-64"
         tabindex="-1" aria-labelledby="drawer-disabled-backdrop-label">
         <h5 id="drawer-disabled-backdrop-label" class="text-base font-semibold text-blue900">
             Fox Paw Track</h5>
