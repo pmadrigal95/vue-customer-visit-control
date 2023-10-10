@@ -67,9 +67,10 @@ const deleteItem = async (id) => {
 
                             <span v-if="item.phone"
                                 class="gap-1 inline-flex items-center text-xs font-normal text-gray-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-orange900 icon icon-tabler icon-tabler-phone-call"
-                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="w-5 h-5 text-orange900 icon icon-tabler icon-tabler-phone-call" width="24"
+                                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <path
                                         d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2">
@@ -89,7 +90,8 @@ const deleteItem = async (id) => {
                         class="px-8 py-2 mr-2 text-sm font-semibold text-center text-gray-100 bg-black rounded-lg hover:bg-blue900 focus:outline-none">
                         Ver más
                     </button>
-            </div>
-        </li>
-    </ol>
-</section></template>
+                </div>
+            </li>
+        </ol>
+    </section>
+</template>
