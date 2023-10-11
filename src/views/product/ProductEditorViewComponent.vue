@@ -36,8 +36,8 @@ const insert = async () => {
     try {
 
         loading.value = true;
-        const id = await useProduct().productInsert(form.value);
-        router.push({ name: "ProductFilterViewComponent", params: { Id: id }, });
+        await useProduct().productInsert(form.value);
+        router.push({ name: "ProductFilterViewComponent" });
     } catch (error) {
         loading.value = false;
         alert(error.message);
@@ -62,7 +62,7 @@ const update = async () => {
     try {
         loading.value = true;
         await useProduct().productUpdate(form.value);
-        router.push({ name: "ProductFilterViewComponent", params: { Id: form.value.id }, });
+        router.push({ name: "ProductFilterViewComponent" });
     } catch (error) {
         loading.value = false;
         alert(error.message);

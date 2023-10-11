@@ -50,7 +50,7 @@ const getById = async () => {
         loading.value = false;
         alert(error.message);
     }
-}
+};
 
 // call the proper insert method from the composable
 // on the submit of the form

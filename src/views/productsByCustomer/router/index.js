@@ -3,7 +3,7 @@
  */
 const routes = [
   {
-    name: "productsByCustomerEditorViewComponent",
+    name: "ProductsByCustomerEditorViewComponent",
     path: "/Customer/:customerId/ProductsByCustomer/Editor/:Id?",
     meta: {
       requiresAuth: true,

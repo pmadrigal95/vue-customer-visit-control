@@ -4,6 +4,8 @@ import { basePaginationHelper } from "@/helpers/basePaginationHelper";
 
 import { productMapper } from "@/infrastructure/mappers/productMapper";
 
+import { selectMapper } from "@/infrastructure/mappers/selectMapper";
+
 export default function UseProduct() {
   const { supabase } = useSupabase();
 
@@ -62,6 +64,25 @@ export default function UseProduct() {
   };
 
   /**
+   * Select
+   */
+  const productSelect = async ({ brandId }) => {
+    const { data, error } = await supabase
+      .from("Products")
+      .select("id, name", { count: "exact" })
+      .order("id", { ascending: false })
+      .eq("brandId", brandId);
+
+    if (error) throw error;
+
+    return selectMapper.$_selectMapper({
+      array: data,
+      value: "id",
+      name: "name",
+    });
+  };
+
+  /**
    * GetById
    */
   const getProductById = async ({ id }) => {
@@ -79,14 +100,11 @@ export default function UseProduct() {
    * Insert
    */
   const productInsert = async ({ name, description, brandId }) => {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("Products")
-      .insert({ name, description, brandId })
-      .select();
+      .insert({ name, description, brandId });
 
     if (error) throw error;
-
-    return data[0].id;
   };
 
   /**
@@ -130,5 +148,6 @@ export default function UseProduct() {
     productUpdate,
     productDelete,
     productInsertOrUpdate,
+    productSelect,
   };
 }

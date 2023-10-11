@@ -74,12 +74,14 @@ export default function UseProductsByCustomer() {
     const getProductsByCustomerById = async ({ id }) => {
       const { data, error } = await supabase
         .from("ProductsByCustomer")
-        .select("id, customerId, productId, serialKey, description, isBorrowed")
+        .select("id, serialKey, description, isBorrowed, Customer (id, name),  Products ( id, name, Brand ( id, name ) )")
         .eq("id", id);
   
       if (error) throw error;
   
-      return data[0];
+      return productsByCustomerMapper.$_productsByCustomerMapper({
+        array: data,
+      })[0];
     };
 
   /**

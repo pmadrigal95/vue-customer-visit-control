@@ -12,10 +12,15 @@ const props = defineProps({
     type: Function,
     requiered: true,
   },
+
+  customerId: {
+    type: [String, Number],
+    required: true,
+  },
 });
 
 const update = (id) => {
-  router.push({ name: "ProductEditorViewComponent", params: { Id: id } });
+  router.push({ name: "ProductsByCustomerEditorViewComponent", params: { Id: id , customerId: `${props.customerId}`} });
 };
 
 const deleteItem = async (id) => {
@@ -88,7 +93,7 @@ const deleteItem = async (id) => {
                   <path d="M7 12h10"></path>
                   <path d="M7 16h10"></path>
                 </svg>
-                <p class="text-base">Alquilado</p>
+                <p class="text-base">Es alquilado</p>
               </span>
             </section>
           </div>

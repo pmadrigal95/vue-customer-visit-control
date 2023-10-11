@@ -44,19 +44,19 @@ const nextPage = () => {
 };
 
 const deleteItem = async (id) => {
-    // try {
-    //     await useProduct().productDelete({id});
+    try {
+        await useProductsByCustomer().productsByCustomerDelete({id});
 
-    //     const response = await useProduct().productFilter({
-    //         query: { page: list.value.page },
-    //     });
+        const response = await useProductsByCustomer().productsByCustomerSearch({
+            query: { page: list.value.page, customerId: props.customerId },
+        });
 
-    //     list.value.data = [...response.props.data];
-    //     list.value.count = response.props.count;
-    //     list.value.page = response.props.page;
-    // } catch (error) {
-    //     alert(error.message);
-    // }
+        list.value.data = [...response.props.data];
+        list.value.count = response.props.count;
+        list.value.page = response.props.page;
+    } catch (error) {
+        alert(error.message);
+    }
 };
 
 onMounted(() => {
@@ -69,12 +69,13 @@ onMounted(() => {
 <template>
   <section
     class="container mx-auto w-fulll h-full bg-white p-10 rounded-lg min-h-[308px] max-h-[608px] md:max-h-[768px] overflow-y-scroll custom-scrollBar"
+    
   >
     <BaseSkeletonLoader v-if="loading" />
     <section v-else class="relative">
       <section class="sticky -top-10 z-40 bg-white pb-1 pt-3">
         <div class="flex flex-row justify-end gap-4 mb-4">
-          <router-link :to="{ name: 'ProductEditorViewComponent' }">
+          <router-link :to="{ name: 'ProductsByCustomerEditorViewComponent',  params: { customerId: `${customerId}` } }">
             <button
               class="text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             >
@@ -84,7 +85,7 @@ onMounted(() => {
         </div>
       </section>
 
-      <BaseListViewComponent :list="list.data" :fnDelete="deleteItem" />
+      <BaseListViewComponent :list="list.data" :fnDelete="deleteItem" :customerId="customerId" />
 
       <div
         class="flex flex-row justify-end pt-11"
