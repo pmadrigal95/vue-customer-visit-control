@@ -12,7 +12,7 @@ import BaseBackButton from '@/components/core/buttons/BaseBackButton.vue';
 
 import AppTemplateComponent from '@/layouts/templates/app/AppTemplateComponent.vue';
 
-import productsByCustomerFilterViewComponent from '@/views/productsByCustomer/productsByCustomerFilterViewComponent.vue';
+import ProductsByCustomerFilterViewComponent from '@/views/productsByCustomer/ProductsByCustomerFilterViewComponent.vue';
 
 // keep up with form data
 const form = ref({
@@ -142,7 +142,7 @@ onMounted(() => {
             <section class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12" v-if="!loading">
                 <h2 class="mb-10 text-left text-4xl font-bold leading-9 tracking-tight text-blue900">
                     Productos</h2>
-                    <productsByCustomerFilterViewComponent :customerId="routerParams" /> 
+                    <ProductsByCustomerFilterViewComponent :customerId="routerParams" /> 
             </section>
         </template>
     </AppTemplateComponent>

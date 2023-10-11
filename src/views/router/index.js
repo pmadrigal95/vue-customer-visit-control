@@ -15,6 +15,8 @@ import customerRoutes from '@/views/customer/router';
 
 import authenticationRoutes from '@/views/authentication/login/router';
 
+import productsByCustomerRoutes from '@/views/productsByCustomer/router';
+
 
 const routes = [
     ...homeRoutes,
@@ -24,6 +26,7 @@ const routes = [
     ...productRoutes,
     ...customerRoutes,
     ...authenticationRoutes,
+    ...productsByCustomerRoutes,
 ];
 
 export default routes;
