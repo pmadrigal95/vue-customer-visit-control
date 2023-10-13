@@ -24,7 +24,7 @@ export default function UseCustomer() {
 
     const { data, count, error } = await supabase
       .from("Customer")
-      .select("id, name, address, phone,  description", { count: "exact" })
+      .select("id, name, address, phone, email, description", { count: "exact" })
       .order("id", { ascending: false })
       .range(from, to);
 
@@ -45,7 +45,7 @@ export default function UseCustomer() {
   const customerSearch = async ({ query: { name } }) => {
     const { data, count, error } = await supabase
       .from("Customer")
-      .select("id, name, address, phone,  description", { count: "exact" })
+      .select("id, name, address, phone, email, description", { count: "exact" })
       .order("name", { ascending: true })
       .ilike("name", `%${name}%`);
 
@@ -65,7 +65,7 @@ export default function UseCustomer() {
   const getCustomerById = async ({ id }) => {
     const { data, error } = await supabase
       .from("Customer")
-      .select("id, name, address, phone,  description")
+      .select("id, name, address, phone, email, description")
       .eq("id", id);
 
     if (error) throw error;
@@ -76,10 +76,10 @@ export default function UseCustomer() {
   /**
    * Insert
    */
-  const customerInsert = async ({ name, address, phone, description }) => {
+  const customerInsert = async ({ name, address, phone, email, description }) => {
     const { data, error } = await supabase
       .from("Customer")
-      .insert({ name, address, phone, description })
+      .insert({ name, address, phone, email, description })
       .select();
 
     if (error) throw error;
@@ -90,10 +90,10 @@ export default function UseCustomer() {
   /**
    * Update
    */
-  const customerUpdate = async ({ id, name, address, phone, description }) => {
+  const customerUpdate = async ({ id, name, address, phone, email, description }) => {
     const { error } = await supabase
       .from("Customer")
-      .update({ name, address, phone, description })
+      .update({ name, address, phone, email, description })
       .eq("id", id);
 
     if (error) throw error;

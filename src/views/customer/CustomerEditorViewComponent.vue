@@ -1,10 +1,10 @@
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
 // Use necessary composables
 const router = useRouter();
-import useCustomer from "@/composables/UseCustomer";
+import useCustomer from '@/composables/UseCustomer';
 
 import { Input, Textarea } from 'flowbite-vue';
 
@@ -16,10 +16,11 @@ import AppTemplateComponent from '@/layouts/templates/app/AppTemplateComponent.v
 
 // keep up with form data
 const form = ref({
-    name: "",
-    address: "",
-    phone: "",
-    description: "",
+    name: '',
+    address: '',
+    phone: '',
+    description: '',
+    email: '',
 });
 
 let loading = ref(false);
@@ -33,7 +34,7 @@ const insert = async () => {
 
         loading.value = true;
        const id = await useCustomer().customerInsert(form.value);
-        router.push({ name: "CustomerDisplayViewComponent" , params: { Id: id },});
+        router.push({ name: 'CustomerDisplayViewComponent' , params: { Id: id },});
     } catch (error) {
         loading.value = false;
         alert(error.message);
@@ -58,7 +59,7 @@ const update = async () => {
     try {
         loading.value = true;
         await useCustomer().customerUpdate(form.value);
-        router.push({ name: "CustomerDisplayViewComponent", params: { Id: form.value.id }, });
+        router.push({ name: 'CustomerDisplayViewComponent', params: { Id: form.value.id }, });
     } catch (error) {
         loading.value = false;
         alert(error.message);
@@ -83,27 +84,30 @@ onMounted(() => {
 <template>
     <AppTemplateComponent>
         <template v-slot:content>
-            <BaseBackButton redirect="CustomerFilterViewComponent" />
-            <section class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12" v-if="!loading">
-                <h2 class="mb-10 text-left text-4xl font-bold leading-9 tracking-tight text-blue900">
+            <BaseBackButton redirect='CustomerFilterViewComponent' />
+            <section class='py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12' v-if='!loading'>
+                <h2 class='mb-10 text-left text-4xl font-bold leading-9 tracking-tight text-blue900'>
                     Cliente</h2>
-                <form class="space-y-6" @submit.prevent="callToAction()">
+                <form class='space-y-6' @submit.prevent='callToAction()'>
                     <div>
-                        <Input v-model="form.name" placeholder="Ingresa su nombre" label="Nombre" required type="text" />
+                        <Input v-model='form.name' placeholder='Ingresa su nombre' label='Nombre' required type='text' />
                     </div>
                     <div>
-                        <Input v-model="form.address" placeholder="Ingresa su dirección" label="Dirección" type="text" />
+                        <Input v-model='form.email' placeholder='Ingresa su email ' label='Email ' type='email' />
                     </div>
                     <div>
-                        <Input v-model="form.phone" placeholder="Ingresa su teléfono " label="Teléfono " type="text" />
+                        <Input v-model='form.address' placeholder='Ingresa su dirección' label='Dirección' type='text' />
                     </div>
                     <div>
-                        <Textarea v-model="form.description" rows="4" placeholder="Ingresa su descripción"
-                            label="Descripción" />
+                        <Input v-model='form.phone' placeholder='Ingresa su teléfono ' label='Teléfono ' type='text' />
                     </div>
                     <div>
-                        <button type="submit"
-                            class="w-full text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center">Guardar</button>
+                        <Textarea v-model='form.description' rows='4' placeholder='Ingresa su descripción'
+                            label='Descripción' />
+                    </div>
+                    <div>
+                        <button type='submit'
+                            class='w-full text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center'>Guardar</button>
                     </div>
                 </form>
             </section>

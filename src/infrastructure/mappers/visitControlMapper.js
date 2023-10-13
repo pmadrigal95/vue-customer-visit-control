@@ -10,6 +10,7 @@ const objectToMapper = ({ object }) => {
         productByCustomerId: object?.ProductsByCustomer?.id,
         productByCustomerSerialKey: object?.ProductsByCustomer?.serialKey,
         customerName: object?.ProductsByCustomer?.Customer?.name,
+        customerEmail: object?.ProductsByCustomer?.Customer?.email,
         productName: object?.ProductsByCustomer?.Products?.name,
         brandName: object?.ProductsByCustomer?.Products?.Brand?.name,
         visitDate: object?.visitDate,

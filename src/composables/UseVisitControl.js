@@ -29,7 +29,7 @@ export default function UseVisitControl() {
     const { data, count, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, Customer (id, name),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes",
+        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes",
         { count: "exact" }
       )
       .order("id", { ascending: false })
@@ -55,7 +55,7 @@ export default function UseVisitControl() {
     const { data, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, Customer (id, name),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes",
+        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes",
         { count: "exact" }
       )
       .order("id", { ascending: false })
@@ -80,7 +80,7 @@ export default function UseVisitControl() {
     const { data, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, Customer (id, name),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes",
+        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes",
         { count: "exact" }
       )
       .order("visitDate", { ascending: false })
@@ -110,7 +110,7 @@ export default function UseVisitControl() {
     const { data, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, Customer (id, name),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes"
+        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes"
       )
       .eq("id", id);
 

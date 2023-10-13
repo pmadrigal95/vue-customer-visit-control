@@ -134,7 +134,7 @@ onMounted(() => {
                     <p class='text-gray-500'>
                         {{ form.customerName }}
                         <br />
-                        {{ }}
+                        <span v-if="form.customerEmail">{{ form.customerEmail }}</span>
                     </p>
                 </div>
 
