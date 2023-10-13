@@ -1,6 +1,8 @@
 <script setup>
 import AppTemplateComponent from '@/layouts/templates/app/AppTemplateComponent.vue';
 
+import BaseTimeLineViewComponent from '@/views/home/components/BaseTimeLineViewComponent.vue';
+
 import BaseBtnActionViewComponent from '@/views/home/components/BaseBtnActionViewComponent.vue';
 
 import BaseCounterCardsViewComponent from '@/views/home/components/BaseCounterCardsViewComponent.vue';
@@ -14,6 +16,8 @@ import BaseCounterCardsViewComponent from '@/views/home/components/BaseCounterCa
         <BaseBtnActionViewComponent />
 
         <BaseCounterCardsViewComponent />
+
+        <BaseTimeLineViewComponent />
       </section>
     </template>
   </AppTemplateComponent>

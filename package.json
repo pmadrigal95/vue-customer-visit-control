@@ -13,6 +13,7 @@
     "@supabase/supabase-js": "^2.33.2",
     "flowbite": "^1.8.1",
     "flowbite-vue": "^0.0.17-next.13",
+    "json-as-xlsx": "^2.5.4",
     "tsparticles": "^2.12.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
