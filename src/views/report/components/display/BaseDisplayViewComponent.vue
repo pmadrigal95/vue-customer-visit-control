@@ -87,7 +87,7 @@ onMounted(() => {
                     class='text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center'>
                     Descargar
                 </button>
-                <BaseSendEmailTemplateViewComponent/>
+                <BaseSendEmailTemplateViewComponent :entity="form" />
                 <button
                     class='text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center'>
                     Editar

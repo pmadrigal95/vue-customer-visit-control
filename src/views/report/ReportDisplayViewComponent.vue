@@ -17,7 +17,7 @@ const routerParams = ref(router.currentRoute.value.params.Id);
 <template>
     <AppTemplateComponent>
         <template v-slot:content>
-            <BaseBackButton redirect="CustomerFilterViewComponent" />
+            <BaseBackButton redirect="ReportFilterViewComponent" />
             <BaseDisplayViewComponent :id="routerParams" />
         </template>
     </AppTemplateComponent>
