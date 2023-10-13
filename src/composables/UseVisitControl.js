@@ -80,7 +80,7 @@ export default function UseVisitControl() {
         "id, ProductsByCustomer (id, serialKey, Customer (id, name),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes",
         { count: "exact" }
       )
-      .order("id", { ascending: false })
+      .order("visitDate", { ascending: false })
       .lt('visitDate', endDate)
       .gt('visitDate', initDate);
 
