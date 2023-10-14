@@ -35,8 +35,7 @@ const open = () => {
 </script>
 
 <template>
-    <nav
-        class="bg-blue800 border-b border-silver900 px-4 py-2.5 fixed left-0 right-0 top-0 z-50">
+    <nav class="bg-blue800 border-b border-silver900 px-4 py-2.5 fixed left-0 right-0 top-0 z-50">
         <div class="flex flex-wrap justify-between items-center">
             <div class="flex justify-start items-center">
                 <button @click="open"
@@ -78,8 +77,7 @@ const open = () => {
         </button>
         <div class="py-4 overflow-y-auto">
             <ul class="space-y-2 font-medium">
-                <li> <router-link
-                        class="flex items-center p-2 text-blue900 rounded-lg hover:bg-gray-100 group"
+                <li> <router-link class="flex items-center p-2 text-blue900 rounded-lg hover:bg-gray-100 group"
                         :to="{ name: 'Home' }">
                         <svg class="w-5 h-5 text-orange900 transition duration-75 group-hover:text-blue900"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
@@ -92,8 +90,21 @@ const open = () => {
                     </router-link>
                 </li>
 
-                <li> <router-link
-                        class="flex items-center p-2 text-blue900 rounded-lg hover:bg-gray-100 group"
+                <li> <router-link class="flex items-center p-2 text-blue900 rounded-lg hover:bg-gray-100 group"
+                        :to="{ name: 'AnalyticsViewComponent' }">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5 text-orange900 transition duration-75 group-hover:text-blue900 icon icon-tabler icon-tabler-chart-area-line"
+                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M4 19l4 -6l4 2l4 -5l4 4l0 5l-16 0"></path>
+                            <path d="M4 12l3 -4l4 2l5 -6l4 4"></path>
+                        </svg>
+                        <span class="ml-3">Analytics</span>
+                    </router-link>
+                </li>
+
+                <li> <router-link class="flex items-center p-2 text-blue900 rounded-lg hover:bg-gray-100 group"
                         :to="{ name: 'CustomerFilterViewComponent' }">
                         <svg xmlns="http://www.w3.org/2000/svg"
                             class="w-5 h-5 text-orange900 transition duration-75 group-hover:text-blue900 icon icon-tabler icon-tabler-users-group"
@@ -111,8 +122,7 @@ const open = () => {
                     </router-link>
                 </li>
 
-                <li> <router-link
-                        class="flex items-center p-2 text-blue900 rounded-lg hover:bg-gray-100 group"
+                <li> <router-link class="flex items-center p-2 text-blue900 rounded-lg hover:bg-gray-100 group"
                         :to="{ name: 'BrandFilterViewComponent' }">
                         <svg xmlns="http://www.w3.org/2000/svg"
                             class="w-5 h-5 text-orange900 transition duration-75 group-hover:text-blue900 icon icon-tabler icon-tabler-truck-loading"
@@ -128,8 +138,7 @@ const open = () => {
                     </router-link>
                 </li>
 
-                <li> <router-link
-                        class="flex items-center p-2 text-blue900 rounded-lg hover:bg-gray-100 group"
+                <li> <router-link class="flex items-center p-2 text-blue900 rounded-lg hover:bg-gray-100 group"
                         :to="{ name: 'ProductFilterViewComponent' }">
                         <svg xmlns="http://www.w3.org/2000/svg"
                             class="w-5 h-5 text-orange900 transition duration-75 group-hover:text-blue900 icon icon-tabler icon-tabler-brand-netbeans"
@@ -152,8 +161,7 @@ const open = () => {
                     </router-link>
                 </li>
 
-                <li> <router-link
-                        class="flex items-center p-2 text-blue900 rounded-lg hover:bg-gray-100 group"
+                <li> <router-link class="flex items-center p-2 text-blue900 rounded-lg hover:bg-gray-100 group"
                         :to="{ name: 'ReportFilterViewComponent' }">
                         <svg xmlns="http://www.w3.org/2000/svg"
                             class="w-5 h-5 text-orange900 transition duration-75 group-hover:text-blue900 icon icon-tabler icon-tabler-file-report"
@@ -173,8 +181,7 @@ const open = () => {
 
             <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200">
                 <li>
-                    <router-link
-                        class="flex items-center p-2 text-blue900 rounded-lg hover:bg-gray-100 group"
+                    <router-link class="flex items-center p-2 text-blue900 rounded-lg hover:bg-gray-100 group"
                         :to="{ name: 'Logout' }">
                         <svg class="flex-shrink-0 w-5 h-5 text-orange900 transition duration-75 group-hover:text-gray-900"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">

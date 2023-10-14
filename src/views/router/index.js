@@ -13,6 +13,8 @@ import productRoutes from '@/views/product/router';
 
 import customerRoutes from '@/views/customer/router';
 
+import analyticsRoutes from '@/views/analytics/router';
+
 import authenticationRoutes from '@/views/authentication/login/router';
 
 import productsByCustomerRoutes from '@/views/productsByCustomer/router';
@@ -25,6 +27,7 @@ const routes = [
     ...reportRoutes,
     ...productRoutes,
     ...customerRoutes,
+    ...analyticsRoutes,
     ...authenticationRoutes,
     ...productsByCustomerRoutes,
 ];

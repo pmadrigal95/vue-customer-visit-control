@@ -66,13 +66,13 @@ onMounted(() => {
         <section v-else class="relative">
             <section class="sticky -top-10 z-40 bg-white pb-1 pt-3">
                 <div class="flex flex-row justify-end gap-4 mb-4">
-                    <router-link :to="{ name: 'ProductSearchViewComponent' }">
+                    <router-link :to="{ name: 'ReportSearchViewComponent' }">
                         <button
                             class="text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Buscar
                         </button>
                     </router-link>
-                    <router-link :to="{ name: 'ProductEditorViewComponent' }">
+                    <router-link :to="{ name: 'ReportAddViewComponent' }">
                         <button
                             class="text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Agregar
