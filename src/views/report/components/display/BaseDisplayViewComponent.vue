@@ -66,6 +66,10 @@ const exportToPDF = async () => {
     }
 };
 
+const update = () => {
+    router.push({ name: "ReportEditorViewComponent", params: { Id: props.id }, });
+};
+
 onMounted(() => {
     if (props.id) {
         getById();
@@ -88,7 +92,7 @@ onMounted(() => {
                     Descargar
                 </button>
                 <BaseSendEmailTemplateViewComponent :entity="form" />
-                <button
+                <button @click="update"
                     class='text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center'>
                     Editar
                 </button>
@@ -206,7 +210,7 @@ onMounted(() => {
                         </tr>
                         <tr class='border-b border-gray-200' v-if='form.loadRelay'>
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
-                                <div class='font-medium text-gray-900'>Rele Carga</div>
+                                <div class='font-medium text-gray-900'>Relecarga</div>
                             </td>
                             <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.loadRelay }}</td>
                         </tr>
