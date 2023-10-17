@@ -4,6 +4,10 @@ import { ref } from 'vue';
 
 import BaseCustomerListViewComponent from '@/views/report/components/add/BaseCustomerListViewComponent.vue';
 
+import BaseProductsByCustomerListViewComponent from '@/views/report/components/add/BaseProductsByCustomerListViewComponent.vue';
+
+import BaseReportViewComponent from '@/views/report/components/add/BaseReportViewComponent.vue';
+
 // keep up with form data
 const entity = ref({
     step: 0,
@@ -28,7 +32,11 @@ const entity = ref({
 </script>
 
 <template>
-    <section class="w-full h-full bg-white rounded-xl mx-auto">
+    <section class="w-full h-full bg-white rounded-xl mx-auto md:mb-4">
         <BaseCustomerListViewComponent :entity="entity" v-if="entity.step == 0" />
+
+       <BaseProductsByCustomerListViewComponent :entity="entity" v-if="entity.step == 1" />
+
+       <BaseReportViewComponent :entity="entity" v-if="entity.step == 2" />
     </section>
 </template>

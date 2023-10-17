@@ -39,6 +39,26 @@ export default function UseCustomer() {
     };
   };
 
+
+    /**
+   * Filter All
+   */
+    const customerFilterAll = async () => {
+      const { data, count, error } = await supabase
+        .from("Customer")
+        .select("id, name, address, phone, email, description", { count: "exact" })
+        .order("name", { ascending: true });
+  
+      if (error) throw error;
+  
+      return {
+        props: {
+          data: data,
+          count: count,
+        },
+      };
+    };
+
   /**
    * Search
    */
@@ -128,6 +148,7 @@ export default function UseCustomer() {
   return {
     customerCount,
     customerFilter,
+    customerFilterAll,
     customerSearch,
     getCustomerById,
     customerInsert,
