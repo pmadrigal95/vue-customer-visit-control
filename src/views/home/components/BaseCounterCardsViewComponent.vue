@@ -37,26 +37,6 @@ onMounted(async () => {
 <template>
     <div class="flex flex-wrap justify-center pb-3 mx-4 md:mx-24 lg:mx-0">
         <div class="w-full p-2 lg:w-1/4 md:w-1/2">
-            <router-link :to="{ name: 'CustomerFilterViewComponent' }">
-                <BaseStatisticCard title="Clientes" :count="counts.customers">
-                    <template v-slot:content>
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            class="h-6 w-6 group-hover:text-gray-50 icon icon-tabler icon-tabler-users-group" width="24"
-                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
-                            <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"></path>
-                            <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
-                            <path d="M17 10h2a2 2 0 0 1 2 2v1"></path>
-                            <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
-                            <path d="M3 13v-1a2 2 0 0 1 2 -2h2"></path>
-                        </svg>
-                    </template>
-                </BaseStatisticCard>
-            </router-link>
-        </div>
-        <div class="w-full p-2 lg:w-1/4 md:w-1/2">
             <router-link :to="{ name: 'BrandFilterViewComponent' }">
                 <BaseStatisticCard title="Provedores" :count="counts.brands">
                     <template v-slot:content>
@@ -74,6 +54,7 @@ onMounted(async () => {
                 </BaseStatisticCard>
             </router-link>
         </div>
+
         <div class="w-full p-2 lg:w-1/4 md:w-1/2">
             <router-link :to="{ name: 'ProductFilterViewComponent' }">
                 <BaseStatisticCard title="Productos" :count="counts.products">
@@ -99,6 +80,28 @@ onMounted(async () => {
                 </BaseStatisticCard>
             </router-link>
         </div>
+
+        <div class="w-full p-2 lg:w-1/4 md:w-1/2">
+            <router-link :to="{ name: 'CustomerFilterViewComponent' }">
+                <BaseStatisticCard title="Clientes" :count="counts.customers">
+                    <template v-slot:content>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 group-hover:text-gray-50 icon icon-tabler icon-tabler-users-group" width="24"
+                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                            <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"></path>
+                            <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                            <path d="M17 10h2a2 2 0 0 1 2 2v1"></path>
+                            <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                            <path d="M3 13v-1a2 2 0 0 1 2 -2h2"></path>
+                        </svg>
+                    </template>
+                </BaseStatisticCard>
+            </router-link>
+        </div>
+
         <div class="w-full p-2 lg:w-1/4 md:w-1/2">
             <router-link :to="{ name: 'ReportFilterViewComponent' }">
                 <BaseStatisticCard title="Reportes" :count="counts.reports">

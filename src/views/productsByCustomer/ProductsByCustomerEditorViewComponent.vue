@@ -8,14 +8,14 @@ import useBrand from "@/composables/UseBrand";
 import useProduct from "@/composables/UseProduct";
 import useProductsByCustomer from "@/composables/UseProductsByCustomer";
 
-import { Input, Textarea, Select, Toggle  } from 'flowbite-vue';
+import { Input, Textarea, Select, Toggle } from 'flowbite-vue';
 
 import BaseSkeletonLoader from '@/components/core/loaders/BaseSkeletonLoader.vue';
 import AppTemplateComponent from '@/layouts/templates/app/AppTemplateComponent.vue';
 
 
 let list = ref({
-    brandList : [],
+    brandList: [],
     productList: []
 });
 
@@ -106,9 +106,9 @@ onMounted(() => {
 
 watch(
     () => form.value.brandId,
-  (brandId) => {
-    getProductList({ brandId });
-  }
+    (brandId) => {
+        getProductList({ brandId });
+    }
 );
 
 </script>
@@ -117,26 +117,42 @@ watch(
 <template>
     <AppTemplateComponent>
         <template v-slot:content>
-            <section class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12" v-if="!loading">
+            <router-link :to="{ name: 'CustomerDisplayViewComponent', params: { Id:
+                router.currentRoute.value.params.customerId} }">
+                <section class="flex flex-row justify-start ml-2">
+                    <button type="button"
+                        class="text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-badge-left-filled"
+                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path
+                                d="M17 6h-6a1 1 0 0 0 -.78 .375l-4 5a1 1 0 0 0 0 1.25l4 5a1 1 0 0 0 .78 .375h6l.112 -.006a1 1 0 0 0 .669 -1.619l-3.501 -4.375l3.5 -4.375a1 1 0 0 0 -.78 -1.625z"
+                                stroke-width="0" fill="currentColor"></path>
+                        </svg>
+                    </button>
+                </section>
+            </router-link>
+            <section class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12" v-if=" !loading ">
                 <h2 class="mb-10 text-left text-4xl font-bold leading-9 tracking-tight text-blue900">
                     Producto</h2>
                 <form class="space-y-6" @submit.prevent="callToAction()">
                     <div>
-                        <Select v-model="form.brandId" :options="list.brandList" placeholder="Ingresa su marca / provedor"
+                        <Select v-model=" form.brandId " :options=" list.brandList " placeholder="Ingresa su marca / provedor"
                             label="Marca / Provedor" required />
                     </div>
                     <div>
-                        <Select v-model="form.productId" :options="list.productList" placeholder="Ingresa su producto"
+                        <Select v-model=" form.productId " :options=" list.productList " placeholder="Ingresa su producto"
                             label="Producto" required />
                     </div>
                     <div>
-                        <Input v-model="form.serialKey" placeholder="Ingresa su serie" label="Serie" required type="text" />
+                        <Input v-model=" form.serialKey " placeholder="Ingresa su serie" label="Serie" required type="text" />
                     </div>
                     <div>
-                        <Toggle v-model="form.isBorrowed" label="Es alquilado" />
+                        <Toggle v-model=" form.isBorrowed " label="Es alquilado" />
                     </div>
                     <div>
-                        <Textarea v-model="form.description" rows="4" placeholder="Ingresa su descripción"
+                        <Textarea v-model=" form.description " rows="4" placeholder="Ingresa su descripción"
                             label="Descripción" />
                     </div>
                     <div>
