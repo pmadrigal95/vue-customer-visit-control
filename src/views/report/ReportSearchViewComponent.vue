@@ -6,7 +6,7 @@ import AppTemplateComponent from '@/layouts/templates/app/AppTemplateComponent.v
 
 import BaseHeaderViewComponent from '@/components/core/display/BaseHeaderViewComponent.vue';
 
-// import BaseSearchViewComponent from '@/views/product/components/search/BaseSearchViewComponent.vue';
+import BaseContainerViewComponent from '@/views/report/components/search/BaseContainerViewComponent.vue';
 
 
 </script>
@@ -15,7 +15,8 @@ import BaseHeaderViewComponent from '@/components/core/display/BaseHeaderViewCom
     <AppTemplateComponent>
         <template v-slot:content>
             <BaseBackButton redirect="ReportFilterViewComponent" />
-            <BaseHeaderViewComponent title="Reportes de visitas" />
+            <BaseHeaderViewComponent title="Reportes de visitas" :showSubtitle="false" />
+            <BaseContainerViewComponent />
         </template>
     </AppTemplateComponent>
 </template>

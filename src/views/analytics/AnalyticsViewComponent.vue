@@ -19,7 +19,9 @@ const activeTab = ref('first')
         <BaseBackButton redirect="Home" />
         <BaseHeaderViewComponent title="Analytics" :showSubtitle="false" />
 
-        <tabs v-model="activeTab" class="p-5"> <!-- class appends to content DIV for all tabs -->
+        <p>Pronto!</p>
+
+        <!-- <tabs v-model="activeTab" class="p-5"> 
           <tab name="first" title="First">
             Lorem...
           </tab>
@@ -29,7 +31,7 @@ const activeTab = ref('first')
           <tab name="third" title="Third">
             Lorem...
           </tab>
-        </tabs>
+        </tabs> -->
       </section>
     </template>
   </AppTemplateComponent>

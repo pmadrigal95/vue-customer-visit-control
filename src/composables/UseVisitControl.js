@@ -32,7 +32,7 @@ export default function UseVisitControl() {
         "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes",
         { count: "exact" }
       )
-      .order("id", { ascending: false })
+      .order("visitDate", { ascending: false })
       .range(from, to);
 
     if (error) throw error;
@@ -48,6 +48,37 @@ export default function UseVisitControl() {
     };
   };
 
+
+    /**
+   * Search
+   */
+    const visitControlSearch = async ({ query: { customerName, initialDate, finalDate } }) => {
+      const base = supabase
+      .from("visitControl")
+      .select(
+        "id, ProductsByCustomer !inner (id, serialKey, Customer !inner (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes",
+        { count: "exact" }
+      )
+      .order("visitDate", { ascending: false }).
+      lt("visitDate", finalDate)
+      .gt("visitDate", initialDate);
+      
+      const result = customerName ? base.filter("ProductsByCustomer.Customer.name", 'ilike', `%${customerName}%`) : base;
+
+      const { data, count, error } = await result;
+  
+      if (error) throw error;
+  
+      return {
+        props: {
+          data: visitControlMapper.$_visitControlMapper({
+            array: data,
+          }),
+          count: count,
+        },
+      };
+    };
+
   /**
    * Dashboard
    */
@@ -58,7 +89,7 @@ export default function UseVisitControl() {
         "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes",
         { count: "exact" }
       )
-      .order("id", { ascending: false })
+      .order("visitDate", { ascending: false })
       .limit(5);
 
     if (error) throw error;
@@ -199,6 +230,7 @@ export default function UseVisitControl() {
   return {
     visitControlCount,
     visitControlFilter,
+    visitControlSearch,
     visitControlDashboard,
     visitControlDelete,
     visitControlReport,
