@@ -29,7 +29,7 @@ export default function UseProduct() {
     const { data, count, error } = await supabase
       .from("Products")
       .select("id, name, description, Brand ( id, name )", { count: "exact" })
-      .order("id", { ascending: false })
+      .order("name", { ascending: true })
       .range(from, to);
 
     if (error) throw error;
@@ -70,7 +70,7 @@ export default function UseProduct() {
     const { data, error } = await supabase
       .from("Products")
       .select("id, name", { count: "exact" })
-      .order("id", { ascending: false })
+      .order("name", { ascending: true })
       .eq("brandId", brandId);
 
     if (error) throw error;

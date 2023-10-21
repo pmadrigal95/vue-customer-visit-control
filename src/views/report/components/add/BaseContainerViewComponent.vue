@@ -21,6 +21,7 @@ const entity = ref({
     observations: undefined,
     notes: undefined,
     loadRelay: undefined,
+    loadPercentage: undefined,
     productByCustomerId: undefined,
     productByCustomerSerialKey: undefined,
     productName: undefined,

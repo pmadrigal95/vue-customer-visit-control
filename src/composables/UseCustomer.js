@@ -25,7 +25,7 @@ export default function UseCustomer() {
     const { data, count, error } = await supabase
       .from("Customer")
       .select("id, name, address, phone, email, description", { count: "exact" })
-      .order("id", { ascending: false })
+      .order("name", { ascending: true })
       .range(from, to);
 
     if (error) throw error;

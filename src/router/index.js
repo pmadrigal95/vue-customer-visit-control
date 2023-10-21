@@ -5,12 +5,6 @@ import viewRoutes from '@/views/router';
 
 const routes = [
   ...viewRoutes,
-  
-  // {
-  //   name: "Register",
-  //   path: "/register",
-  //   component: () => import("@/pages/Register.vue"),
-  // },
 ];
 
 const router = createRouter({

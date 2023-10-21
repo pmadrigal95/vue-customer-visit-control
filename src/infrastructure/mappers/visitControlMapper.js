@@ -20,6 +20,8 @@ const objectToMapper = ({ object }) => {
         temperature: object?.temperature,
         prp: object?.prp,
         engineStarts: object?.engineStarts,
+        loadRelay: object?.loadRelay,
+        loadPercentage: object?.loadPercentage,
         observations: object?.observations,
         notes: object?.notes,
     };
@@ -53,6 +55,8 @@ export const visitControlMapper = {
             { label: "Temperatura", value: "temperature" },
             { label: "Prp", value: "prp" },
             { label: "Arranque Motor", value: "engineStarts" },
+            { label: "Relecarga", value: "loadRelay" },
+            { label: "Porcentaje Carga", value: "loadPercentage" },
             { label: "Observaciones Generales", value: "observations" },
           ],
         content: arrayToMapper({ array }),

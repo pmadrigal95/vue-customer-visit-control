@@ -40,6 +40,8 @@ const setInstance = () => {
         prp: props.entity.prp,
         engineStarts: props.entity.engineStarts,
         loadRelay: props.entity.loadRelay,
+        loadPercentage: props.entity.loadPercentage,
+        observations: props.entity.observations,
         to: props.entity.customerEmail,
         reply_to: "pablomadrigal.1995@gmail.com",
     };
@@ -49,11 +51,11 @@ const sendEmail = () => {
     loading.value = true;
     emailjs.send(import.meta.env.VITE_EMAILJS_BASE_SERVICE_ID, import.meta.env.VITE_EMAILJS_BASE_TEMPLATE_ID, setInstance(), import.meta.env.VITE_EMAILJS_BASE_USER_ID)
         .then(() => {
-            alert('Message sent!');
+            alert('Mensaje enviado correctamente!');
             loading.value = false;
             closeModal();
         }, (error) => {
-            alert('Message not sent', error);
+            alert('No se pudo enviar el mensaje: ', error);
             loading.value = false;
         });
 };

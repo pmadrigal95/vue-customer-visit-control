@@ -27,7 +27,7 @@ export default function UseBrand() {
     const { data, count, error } = await supabase
       .from("Brand")
       .select("id, name, description", { count: "exact" })
-      .order("id", { ascending: false })
+      .order("name", { ascending: true })
       .range(from, to);
 
     if (error) throw error;
@@ -48,7 +48,7 @@ export default function UseBrand() {
     const { data, error } = await supabase
       .from("Brand")
       .select("id, name", { count: "exact" })
-      .order("id", { ascending: false });
+      .order("name", { ascending: true });
 
     if (error) throw error;
 

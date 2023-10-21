@@ -29,7 +29,7 @@ export default function UseVisitControl() {
     const { data, count, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes",
+        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
         { count: "exact" }
       )
       .order("visitDate", { ascending: false })
@@ -56,7 +56,7 @@ export default function UseVisitControl() {
       const base = supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer !inner (id, serialKey, Customer !inner (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes",
+        "id, ProductsByCustomer !inner (id, serialKey, Customer !inner (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
         { count: "exact" }
       )
       .order("visitDate", { ascending: false }).
@@ -86,7 +86,7 @@ export default function UseVisitControl() {
     const { data, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes",
+        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
         { count: "exact" }
       )
       .order("visitDate", { ascending: false })
@@ -111,7 +111,7 @@ export default function UseVisitControl() {
     const { data, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes",
+        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
         { count: "exact" }
       )
       .order("visitDate", { ascending: false })
@@ -141,7 +141,7 @@ export default function UseVisitControl() {
     const { data, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, observations, notes"
+        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes"
       )
       .eq("id", id);
 
@@ -167,6 +167,7 @@ export default function UseVisitControl() {
     observations,
     notes,
     loadRelay,
+    loadPercentage,
   }) => {
     const { data, error } = await supabase
       .from("visitControl")
@@ -182,6 +183,7 @@ export default function UseVisitControl() {
         observations,
         notes,
         loadRelay,
+        loadPercentage,
       })
       .select();
 
@@ -206,6 +208,7 @@ export default function UseVisitControl() {
     observations,
     notes,
     loadRelay,
+    loadPercentage,
   }) => {
     const { error } = await supabase
       .from("visitControl")
@@ -221,6 +224,7 @@ export default function UseVisitControl() {
         observations,
         notes,
         loadRelay,
+        loadPercentage,
       })
       .eq("id", id);
 

@@ -35,6 +35,7 @@ const cleanReport = () => {
     props.entity.observations = undefined;
     props.entity.notes = undefined;
     props.entity.loadRelay = undefined;
+    props.entity.loadPercentage = undefined;
 };
 
 const returnProduct = () => {
@@ -79,14 +80,14 @@ onMounted(() => {
                             type='text' />
                     </div>
                     <div>
-                        <Input v-model='entity.pPsi' placeholder='Ingresa P Psi' label='Horas carga' type='text' />
+                        <Input v-model='entity.pPsi' placeholder='Ingresa Presión Psi' label='Presión psi' type='text' />
                     </div>
                     <div>
                         <Input v-model='entity.temperature' placeholder='Ingresa temperatura' label='Temperatura'
                             type='text' />
                     </div>
                     <div>
-                        <Input v-model='entity.prp' placeholder='Ingresa PRP' label='PRP' type='text' />
+                        <Input v-model='entity.prp' placeholder='Ingresa Punto de rocío PRP' label='Punto de rocío PRP' type='text' />
                     </div>
                     <div>
                         <Input v-model='entity.engineStarts' placeholder='Ingresa Arranques Motor' label='Arranques Motor'
@@ -94,6 +95,9 @@ onMounted(() => {
                     </div>
                     <div>
                         <Input v-model='entity.loadRelay' placeholder='Ingresa Relecarga' label='Relecarga' type='text' />
+                    </div>
+                    <div>
+                        <Input v-model='entity.loadPercentage' placeholder='Ingresa Porcentaje carga' label='Porcentaje Carga' type='text' />
                     </div>
                     <div>
                         <Textarea v-model='entity.observations' rows='4' placeholder='Ingresa Observaciones'
