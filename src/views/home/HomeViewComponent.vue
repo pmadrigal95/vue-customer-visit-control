@@ -7,6 +7,8 @@ import BaseBtnActionViewComponent from '@/views/home/components/BaseBtnActionVie
 
 import BaseCounterCardsViewComponent from '@/views/home/components/BaseCounterCardsViewComponent.vue';
 
+import BaseExportToExcelViewComponent from '@/views/report/components/exportToExcel/BaseExportToExcelViewComponent.vue';
+
 </script>
 
 <template>
@@ -17,6 +19,7 @@ import BaseCounterCardsViewComponent from '@/views/home/components/BaseCounterCa
 
         <BaseCounterCardsViewComponent />
 
+        <BaseExportToExcelViewComponent />
         <BaseTimeLineViewComponent />
       </section>
     </template>

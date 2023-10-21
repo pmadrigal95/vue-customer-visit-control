@@ -8,6 +8,7 @@ import BaseHeaderViewComponent from '@/components/core/display/BaseHeaderViewCom
 
 import BaseContainerViewComponent from '@/views/report/components/search/BaseContainerViewComponent.vue';
 
+import BaseExportToExcelViewComponent from '@/views/report/components/exportToExcel/BaseExportToExcelViewComponent.vue';
 
 </script>
 
@@ -16,6 +17,7 @@ import BaseContainerViewComponent from '@/views/report/components/search/BaseCon
         <template v-slot:content>
             <BaseBackButton redirect="ReportFilterViewComponent" />
             <BaseHeaderViewComponent title="Reportes de visitas" :showSubtitle="false" />
+            <BaseExportToExcelViewComponent />
             <BaseContainerViewComponent />
         </template>
     </AppTemplateComponent>

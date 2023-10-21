@@ -126,6 +126,51 @@ export default function UseVisitControl() {
   };
 
   /**
+   * Report Xlsx
+   */
+  const visitControlReportByCustomer = async ({
+    query: {
+      customerId,
+      productId,
+      initDate,
+      endDate,
+    },
+  }) => {
+
+    const base = supabase
+    .from("visitControl")
+    .select(
+      "id, ProductsByCustomer !inner(id, serialKey, Customer !inner(id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
+      { count: "exact" }
+    )
+    .order("visitDate", { ascending: false });
+
+    let result = base;
+
+    if (customerId) {
+      result = result.eq("ProductsByCustomer.Customer.id", customerId);
+    }
+
+    if (productId) {
+      result = result.eq("ProductsByCustomer.id", productId);;
+    }
+
+    if (initDate && endDate) {
+      result = result.lt("visitDate", endDate)
+      .gt("visitDate", initDate);
+    }
+
+    const { data, error } = await result;
+      
+
+    if (error) throw error;
+
+    return visitControlMapper.$_visitControlMapperReport({
+      array: data,
+    });
+  };
+
+  /**
    * Delete
    */
   const visitControlDelete = async ({ id }) => {
@@ -238,6 +283,7 @@ export default function UseVisitControl() {
     visitControlDashboard,
     visitControlDelete,
     visitControlReport,
+    visitControlReportByCustomer,
     visitControlById,
     visitControlInsert,
     visitControlUpdate,

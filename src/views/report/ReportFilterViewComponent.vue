@@ -7,6 +7,8 @@ import BaseHeaderViewComponent from '@/components/core/display/BaseHeaderViewCom
 
 import BaseFilterViewComponent from '@/views/report/components/filter/BaseFilterViewComponent.vue';
 
+import BaseExportToExcelViewComponent from '@/views/report/components/exportToExcel/BaseExportToExcelViewComponent.vue';
+
 </script>
 
 <template>
@@ -14,6 +16,7 @@ import BaseFilterViewComponent from '@/views/report/components/filter/BaseFilter
         <template v-slot:content>
             <BaseBackButton redirect="Home" />
             <BaseHeaderViewComponent title="Reportes de visitas" />
+            <BaseExportToExcelViewComponent />
             <BaseFilterViewComponent />
         </template>
     </AppTemplateComponent>

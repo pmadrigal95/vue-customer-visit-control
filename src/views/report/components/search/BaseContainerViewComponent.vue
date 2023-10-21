@@ -30,7 +30,7 @@ const search = () => {
 </script>
 
 <template>
-    <section class="w-full h-full bg-white rounded-xl mx-auto md:mb-4 -mt-8 md:-mt-14">
+    <section class="w-full h-full bg-white rounded-xl mx-auto md:mb-4">
         <form class='px-4 py-2 space-y-6' @submit.prevent='search()'>
             <div>
                 <Input v-model='entity.companyName' placeholder='Ingresa nombre de cliente' label='Cliente' type='text' />

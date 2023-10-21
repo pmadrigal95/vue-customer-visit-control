@@ -48,4 +48,20 @@ export const baseDateHelper = {
         // Iniciar en este año, el siguiente mes, en el día 0 (así que así nos regresamos un día)
         return `${date.getMonth() + 1}`;
     },
+
+    $_setCurrentWeek() {
+        const curr = new Date; // get current date
+        const first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+        const last = first + 6; // last day is the first day + 6
+
+        const firstday = new Date(curr.setDate(first));
+        const lastday = new Date(curr.setDate(last));
+
+        return {
+            firstday: firstday.getFullYear() + '-' + ((firstday.getMonth() > 8) ? (firstday.getMonth() + 1) : ('0' + (firstday.getMonth() + 1))) + '-' + ((firstday.getDate() > 9) ? firstday.getDate() : ('0' + firstday.getDate())),
+            lastday: lastday.getFullYear() + '-' + ((lastday.getMonth() > 8) ? (lastday.getMonth() + 1) : ('0' + (lastday.getMonth() + 1))) + '-' + ((lastday.getDate() > 9) ? lastday.getDate() : ('0' + lastday.getDate())),
+        }
+        
+        
+    },
 };

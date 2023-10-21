@@ -2,6 +2,8 @@ import useSupabase from "@/composables/UseSupabase";
 
 import { basePaginationHelper } from "@/helpers/basePaginationHelper";
 
+import { selectMapper } from "@/infrastructure/mappers/selectMapper";
+
 export default function UseCustomer() {
   const { supabase } = useSupabase();
 
@@ -80,6 +82,24 @@ export default function UseCustomer() {
   };
 
   /**
+   * Select
+   */
+  const customerSelect = async () => {
+    const { data, error } = await supabase
+      .from("Customer")
+      .select("id, name", { count: "exact" })
+      .order("name", { ascending: true });
+
+    if (error) throw error;
+
+    return selectMapper.$_selectMapper({
+      array: data,
+      value: "id",
+      name: "name",
+    });
+  };
+
+  /**
    * GetById
    */
   const getCustomerById = async ({ id }) => {
@@ -149,6 +169,7 @@ export default function UseCustomer() {
     customerCount,
     customerFilter,
     customerFilterAll,
+    customerSelect,
     customerSearch,
     getCustomerById,
     customerInsert,

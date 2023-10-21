@@ -1,5 +1,7 @@
 import useSupabase from "@/composables/UseSupabase";
 
+import { selectMapper } from "@/infrastructure/mappers/selectMapper";
+
 import { basePaginationHelper } from "@/helpers/basePaginationHelper";
 
 import { productsByCustomerMapper } from "@/infrastructure/mappers/productsByCustomerMapper";
@@ -69,6 +71,30 @@ export default function UseProductsByCustomer() {
   };
 
     /**
+   * Select
+   */
+    const productsByCustomerSelect = async ({customerId}) => {
+      const { data, error } = await supabase
+      .from("ProductsByCustomer")
+      .select(
+        "id, serialKey, description, isBorrowed, Customer (id, name),  Products( id, name, Brand ( id, name ) )",
+        { count: "exact" }
+      )
+      .eq("customerId", customerId)
+      .order("id", { ascending: false });
+  
+      if (error) throw error;
+  
+      return selectMapper.$_selectMapper({
+        array: productsByCustomerMapper.$_productsByCustomerMapper({
+          array: data,
+        }),
+        value: "id",
+        name: "productName",
+      });
+    };
+
+    /**
    * GetById
    */
     const getProductsByCustomerById = async ({ id }) => {
@@ -121,6 +147,7 @@ export default function UseProductsByCustomer() {
   return {
     productsByCustomerFilter,
     productsByCustomerSearch,
+    productsByCustomerSelect,
     getProductsByCustomerById,
     productsByCustomerInsert,
     productsByCustomerUpdate,
