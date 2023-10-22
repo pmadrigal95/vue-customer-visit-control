@@ -72,31 +72,31 @@ onMounted(() => {
                     </div>
                     <div>
                         <Input v-model='form.totalHours' placeholder='Ingresa total de horas' label='Total de horas'
-                            type='text' />
+                            type='number' />
                     </div>
                     <div>
                         <Input v-model='form.chargingHours' placeholder='Ingresa horas carga' label='Horas carga'
-                            type='text' />
+                            type='number' />
                     </div>
                     <div>
-                        <Input v-model='form.pPsi' placeholder='Ingresa Presión Psi' label='Presión psi' type='text' />
+                        <Input v-model='form.pPsi' placeholder='Ingresa Presión Psi' label='Presión psi' type='number' />
                     </div>
                     <div>
                         <Input v-model='form.temperature' placeholder='Ingresa temperatura' label='Temperatura'
                             type='text' />
                     </div>
                     <div>
-                        <Input v-model='form.prp' placeholder='Ingresa Punto de rocío PRP' label='Punto de rocío PRP' type='text' />
+                        <Input v-model='form.prp' placeholder='Ingresa Punto de rocío PRP' label='Punto de rocío PRP' type='number' />
                     </div>
                     <div>
                         <Input v-model='form.engineStarts' placeholder='Ingresa Arranques Motor' label='Arranques Motor'
-                            type='text' />
+                            type='number' />
                     </div>
                     <div>
-                        <Input v-model='form.loadRelay' placeholder='Ingresa Relecarga' label='Relecarga' type='text' />
+                        <Input v-model='form.loadRelay' placeholder='Ingresa Relecarga' label='Relecarga' type='number' />
                     </div>
                     <div>
-                        <Input v-model='form.loadPercentage' placeholder='Ingresa porcentaje carga' label='Porcentaje Carga' type='text' />
+                        <Input v-model='form.loadPercentage' placeholder='Ingresa porcentaje carga' label='Porcentaje Carga (%)' type='number' />
                     </div>
                     <div>
                         <Textarea v-model='form.observations' rows='4' placeholder='Ingresa Observaciones'

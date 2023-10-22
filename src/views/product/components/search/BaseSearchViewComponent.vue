@@ -88,7 +88,7 @@ const deleteItem = async (id) => {
                     <p class="mb-8 md:mb-0 text-lg font-normal text-gray-600 lg:text-xl sm:px-16 xl:px-48"
                         v-if="search && list.count == 0">
                         Lamentablemente, no hemos encontrado resultados que coincidan con tu búsqueda en este momento.</p>
-                    <p class="text-lg font-normal text-gray-600 lg:text-xl sm:px-16 xl:px-48 hidden md:block" v-else>
+                    <p class="text-lg font-normal text-gray-600 lg:text-xl sm:px-16 xl:px-48 block" v-else>
                         ¿Qué estás buscando hoy?</p>
                 </section>
             </section>

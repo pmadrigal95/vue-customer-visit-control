@@ -13,7 +13,7 @@ import BaseFilterViewComponent from '@/views/brand/components/filter/BaseFilterV
     <AppTemplateComponent>
         <template v-slot:content>
             <BaseBackButton redirect="Home" />
-            <BaseHeaderViewComponent title="Provedores" />
+            <BaseHeaderViewComponent title="Marcas" />
             <BaseFilterViewComponent />
         </template>
     </AppTemplateComponent>

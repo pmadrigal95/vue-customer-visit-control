@@ -71,7 +71,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <BaseTitleViewComponent :title='`Productos de ${entity.customerName}`' subtitle='Seleccionar un producto.' :fnAction="returnCustomer" />
+    <BaseTitleViewComponent :title='`Compresores de ${entity.customerName}`' subtitle='Seleccionar un compresor.' :fnAction="returnCustomer" />
     <BaseSkeletonLoader v-if='loading' />
     <section v-else class='px-8 pb-2'>
         <section class='p-5 mb-5 border border-gray-100 rounded-lg bg-gray-50' v-if='list.data.length > 0'>

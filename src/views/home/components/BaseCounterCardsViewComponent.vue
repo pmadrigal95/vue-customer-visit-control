@@ -38,7 +38,7 @@ onMounted(async () => {
     <div class="flex flex-wrap justify-center pb-3 mx-4 md:mx-24 lg:mx-0">
         <div class="w-full p-2 lg:w-1/4 md:w-1/2">
             <router-link :to="{ name: 'BrandFilterViewComponent' }">
-                <BaseStatisticCard title="Provedores" :count="counts.brands">
+                <BaseStatisticCard title="Marcas" :count="counts.brands">
                     <template v-slot:content>
                         <svg xmlns="http://www.w3.org/2000/svg"
                             class="h-6 w-6 group-hover:text-gray-50 icon icon-tabler icon-tabler-truck-loading" width="24"
@@ -57,7 +57,7 @@ onMounted(async () => {
 
         <div class="w-full p-2 lg:w-1/4 md:w-1/2">
             <router-link :to="{ name: 'ProductFilterViewComponent' }">
-                <BaseStatisticCard title="Productos" :count="counts.products">
+                <BaseStatisticCard title="Compresores" :count="counts.products">
                     <template v-slot:content>
                         <svg xmlns="http://www.w3.org/2000/svg"
                             class="h-6 w-6 group-hover:text-gray-50 icon icon-tabler icon-tabler-brand-netbeans" width="24"
@@ -104,7 +104,7 @@ onMounted(async () => {
 
         <div class="w-full p-2 lg:w-1/4 md:w-1/2">
             <router-link :to="{ name: 'ReportFilterViewComponent' }">
-                <BaseStatisticCard title="Reportes" :count="counts.reports">
+                <BaseStatisticCard title="Visitas" :count="counts.reports">
                     <template v-slot:content>
                         <svg xmlns="http://www.w3.org/2000/svg"
                             class="h-6 w-6 group-hover:text-gray-50 icon icon-tabler icon-tabler-file-report" width="24"

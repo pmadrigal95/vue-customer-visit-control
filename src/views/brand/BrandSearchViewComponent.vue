@@ -15,7 +15,7 @@ import BaseSearchViewComponent from '@/views/brand/components/search/BaseSearchV
     <AppTemplateComponent>
         <template v-slot:content>
             <BaseBackButton redirect="BrandFilterViewComponent" />
-            <BaseHeaderViewComponent title="Provedores" />
+            <BaseHeaderViewComponent title="Marcas" />
             <BaseSearchViewComponent />
         </template>
     </AppTemplateComponent>

@@ -115,8 +115,8 @@ const deleteItem = async (id) => {
       <img class="w-350 h-350 self-center pb-5"
         src="https://ztdqsurxcyrlabzyhrud.supabase.co/storage/v1/object/public/src/images/buscar.png?t=2023-10-05T00%3A44%3A00.658Z"
         alt="" />
-      <p class="text-lg font-normal text-gray-600 lg:text-xl sm:px-16 xl:px-48 hidden md:block">
-        Haz clic en el botón "Agregar" para comenzar a agregar productos al cliente.</p>
+      <p class="text-lg font-normal text-gray-600 lg:text-xl sm:px-16 xl:px-48 block">
+        Haz clic en el botón "Agregar" para comenzar a agregar compresores al cliente.</p>
     </section>
   </section>
 </template>

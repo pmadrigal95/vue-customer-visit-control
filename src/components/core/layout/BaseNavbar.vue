@@ -116,7 +116,7 @@ const open = () => {
                             <path d="M9 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
                             <path d="M18 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
                         </svg>
-                        <span class="ml-3">Provedores</span>
+                        <span class="ml-3">Marcas</span>
                     </router-link>
                 </li>
 
@@ -139,7 +139,7 @@ const open = () => {
                             <path d="M19.5 16l-3.5 -2"></path>
                             <path d="M8 14l-3.5 2"></path>
                         </svg>
-                        <span class="ml-3">Productos</span>
+                        <span class="ml-3">Compresores</span>
                     </router-link>
                 </li>
 
@@ -173,7 +173,7 @@ const open = () => {
                             <path d="M12 3v4a1 1 0 0 0 1 1h4"></path>
                             <path d="M11.5 21h-6.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v2m0 3v4"></path>
                         </svg>
-                        <span class="ml-3">Reportes</span>
+                        <span class="ml-3">Visitas</span>
                     </router-link>
                 </li>
             </ul>

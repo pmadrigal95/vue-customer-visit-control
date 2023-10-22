@@ -135,15 +135,15 @@ watch(
             </router-link>
             <section class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12" v-if=" !loading ">
                 <h2 class="mb-10 text-left text-4xl font-bold leading-9 tracking-tight text-blue900">
-                    Producto</h2>
+                    Compresor</h2>
                 <form class="space-y-6" @submit.prevent="callToAction()">
                     <div>
-                        <Select v-model=" form.brandId " :options=" list.brandList " placeholder="Ingresa su marca / provedor"
-                            label="Marca / Provedor" required />
+                        <Select v-model=" form.brandId " :options=" list.brandList " placeholder="Ingresa su marca"
+                            label="Marca" required />
                     </div>
                     <div>
-                        <Select v-model=" form.productId " :options=" list.productList " placeholder="Ingresa su producto"
-                            label="Producto" required />
+                        <Select v-model=" form.productId " :options=" list.productList " placeholder="Ingresa su modelo del compresor"
+                            label="Compresor" required />
                     </div>
                     <div>
                         <Input v-model=" form.serialKey " placeholder="Ingresa su serie" label="Serie" required type="text" />

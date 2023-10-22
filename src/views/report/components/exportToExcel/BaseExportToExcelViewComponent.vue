@@ -138,11 +138,11 @@ watch(
 <template>
     <div class="flex flex-wrap md:flex-row md:justify-end gap-4 mb-4 justify-center">
         <button @click="openCurrentWeekReport"
-            class=" text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Crear
-            Reporte Semanal</button>
+            class=" text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+            Reporte de visitas semanal</button>
 
         <button @click="openCustomerReport"
-            class=" text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center">Reporte
+            class=" text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center">Reporte por
             Cliente</button>
     </div>
     <Modal v-if="isShowModal" @close="closeModal">
@@ -161,8 +161,8 @@ watch(
                                 placeholder="Ingresa el cliente" label="Cliente" required />
                         </div>
                         <div class="mb-4">
-                            <Select v-model="entity.productId" :options="list.productList" placeholder="Ingresa el producto"
-                                label="Producto" required />
+                            <Select v-model="entity.productId" :options="list.productList" placeholder="Ingresa el compresor"
+                                label="Compresor" required />
                         </div>
                         <div class="mb-2">
                             <Toggle v-model="entity.requiredDates" label="Seleccionar rango de fechas" />

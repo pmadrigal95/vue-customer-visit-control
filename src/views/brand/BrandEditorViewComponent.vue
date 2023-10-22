@@ -84,10 +84,10 @@ onMounted(() => {
             <BaseBackButton redirect="BrandFilterViewComponent" />
             <section class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12" v-if="!loading">
                 <h2 class="mb-10 text-left text-4xl font-bold leading-9 tracking-tight text-blue900">
-                    Provedor</h2>
+                    Marca</h2>
                 <form class="space-y-6" @submit.prevent="callToAction()">
                     <div>
-                        <Input v-model="form.name" placeholder="Ingresa su nombre" label="Nombre" required type="text" />
+                        <Input v-model="form.name" placeholder="Ingresa su nombre" label="Nombre de la marca" required type="text" />
                     </div>
                     <div>
                         <Textarea v-model="form.description" rows="4" placeholder="Ingresa su descripción"

@@ -159,7 +159,7 @@ onMounted(() => {
 
             <section class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12" v-if="!loading">
                 <h2 class="mb-10 text-left text-4xl font-bold leading-9 tracking-tight text-blue900">
-                    Productos</h2>
+                    Compresores de {{ form.name }} </h2>
             <ProductsByCustomerFilterViewComponent :customerId="routerParams" />
         </section>
     </template>

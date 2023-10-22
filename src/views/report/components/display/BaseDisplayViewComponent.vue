@@ -142,7 +142,7 @@ onMounted(() => {
 
                 <div class='text-right'>
                     <p>
-                        Producto:
+                        Compresor:
                         <span class='text-gray-500'>{{ `${form.brandName} ${form.productName}` }}</span>
                     </p>
                     <p>
@@ -216,9 +216,9 @@ onMounted(() => {
                         </tr>
                         <tr class='border-b border-gray-200' v-if='form.loadPercentage'>
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
-                                <div class='font-medium text-gray-900'>Porcentaje Carga</div>
+                                <div class='font-medium text-gray-900'>Porcentaje Carga (%)</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.loadPercentage }}</td>
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.loadPercentage }} %</td>
                         </tr>
                     </tbody>
                 </table>
