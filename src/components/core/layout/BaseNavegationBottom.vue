@@ -22,7 +22,7 @@
                             d="M19 10h-6a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1Zm-4.5 3.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM12.62 4h2.78L12.539.41a1.086 1.086 0 1 0-1.7 1.352L12.62 4Z" />
                     </svg>
                     <span
-                        class="text-sm text-blue800 group-hover:text-orange900">Provedores</span>
+                        class="text-sm text-blue800 group-hover:text-orange900">Marcas</span>
                 </button>
                 <button type="button"
                     class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">

@@ -51,7 +51,7 @@ const deleteItem = async (id) => {
           />
 
           <div class="text-blue900 w-full">
-            <div class="text-3xl font-bold pb-2">{{ item.name }}</div>
+            <div class="text-4xl font-bold pb-2">{{ item.name }}</div>
             <span
               v-if="item.brandName"
               class="gap-1 inline-flex items-center text-xs font-normal text-gray-500"
@@ -76,7 +76,7 @@ const deleteItem = async (id) => {
                 <path d="M9 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
                 <path d="M18 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
               </svg>
-              <p class="text-base">{{ item.brandName }}</p>
+              <p class="text-2xl">{{ item.brandName }}</p>
             </span>
             <div
               v-if="item.description"

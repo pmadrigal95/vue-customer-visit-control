@@ -48,7 +48,7 @@ const deleteItem = async (id) => {
             alt="compresor" />
 
           <div class="text-blue900 w-full">
-            <div class="text-3xl font-bold pb-2">{{ item.productName }}</div>
+            <div class="text-4xl font-bold pb-2">{{ item.productName }}</div>
             <span v-if="item.brandName" class="gap-1 inline-flex items-center text-xs font-normal text-gray-500">
               <svg xmlns="http://www.w3.org/2000/svg"
                 class="w-5 h-5 text-orange900 transition duration-75 group-hover:text-blue900 icon icon-tabler icon-tabler-key"
@@ -60,7 +60,7 @@ const deleteItem = async (id) => {
                 </path>
                 <path d="M15 9h.01"></path>
               </svg>
-              <p class="text-base">{{ item.serialKey }}</p>
+              <p class="text-2xl">{{ item.serialKey }}</p>
             </span>
             <div v-if="item.description"
               class="p-3 text-2xs italic font-normal text-gray-500 border border-gray-200 rounded-lg bg-gray-50">
@@ -79,7 +79,7 @@ const deleteItem = async (id) => {
                   <path d="M9 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
                   <path d="M18 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
                 </svg>
-                <p class="text-base">{{ item.brandName }}</p>
+                <p class="text-2xl">{{ item.brandName }}</p>
               </span>
 
               <span v-if="item.isBorrowed" class="gap-1 inline-flex items-center text-xs font-normal text-gray-500">
@@ -93,7 +93,7 @@ const deleteItem = async (id) => {
                   <path d="M7 12h10"></path>
                   <path d="M7 16h10"></path>
                 </svg>
-                <p class="text-base">Es alquilado</p>
+                <p class="text-2xl">Es alquilado</p>
               </span>
             </section>
           </div>

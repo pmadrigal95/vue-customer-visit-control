@@ -60,10 +60,10 @@ const deleteItem = async (id) => {
                         </div>
                         <!-- Content -->
                         <div v-if="item.observations"
-                            class="p-3 text-2xs italic font-normal text-gray-500 border border-gray-200 rounded-lg">{{
+                            class="p-3 text-xl italic font-normal text-gray-500 border border-gray-200 rounded-lg">{{
                                 item.observations }}</div>
                         <a @click="update(item.id)"
-                            class="cursor-pointer mt-2 inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue900 focus:z-10 focus:ring-4 focus:outline-none focus:ring-orange900 focus:text-blue900"> Ver más <svg class="w-3 h-3 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            class="bg-blue800 cursor-pointer mt-2 inline-flex items-center px-4 py-2 text-sm font-medium text-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue900 focus:z-10 focus:ring-4 focus:outline-none focus:ring-orange900 focus:text-blue900"> Ver más <svg class="w-3 h-3 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 14 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M1 5h12m0 0L9 1m4 4L9 9" />

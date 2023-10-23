@@ -44,9 +44,9 @@ const deleteItem = async (id) => {
                         alt="cliente" />
 
                     <div class="text-blue900 w-full">
-                        <div class="text-3xl font-bold pb-2">{{ item.name }}</div>
+                        <div class="text-4xl font-bold pb-2">{{ item.name }}</div>
                         <div v-if="item.description"
-                            class="p-3 text-2xs italic font-normal text-gray-500 border border-gray-200 rounded-lg bg-gray-50 ">
+                            class="p-3 text-xl italic font-normal text-gray-500 border border-gray-200 rounded-lg bg-gray-50 ">
                             {{ item.description }}</div>
 
                         <section class="flex flex-wrap gap-4 pt-4" v-if="item.address || item.phone">
@@ -62,7 +62,7 @@ const deleteItem = async (id) => {
                                         d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z">
                                     </path>
                                 </svg>
-                                <p class="text-base">{{ item.address }}</p>
+                                <p class="text-xl">{{ item.address }}</p>
                             </span>
 
                             <span v-if="item.phone"
@@ -78,7 +78,7 @@ const deleteItem = async (id) => {
                                     <path d="M15 7a2 2 0 0 1 2 2"></path>
                                     <path d="M15 3a6 6 0 0 1 6 6"></path>
                                 </svg>
-                                <p class="text-base">{{ item.phone }}</p>
+                                <p class="text-xl">{{ item.phone }}</p>
                             </span>
                         </section>
 

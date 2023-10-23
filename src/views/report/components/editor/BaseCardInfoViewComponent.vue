@@ -17,7 +17,7 @@ defineProps({
                         alt="cliente" />
 
                     <div class="text-blue900 w-full">
-                        <div class="text-3xl font-bold pb-2">{{ entity.customerName }}</div>
+                        <div class="text-4xl font-bold pb-2">{{ entity.customerName }}</div>
 
                         <section class="flex flex-wrap gap-4" v-if="entity.customerEmail">
                             <span v-if="entity.customerEmail"
@@ -34,7 +34,7 @@ defineProps({
                                         d="M19 4c1.08 0 2.027 .57 2.555 1.427l-9.555 6.37l-9.555 -6.37a2.999 2.999 0 0 1 2.354 -1.42l.201 -.007h14z"
                                         stroke-width="0" fill="currentColor"></path>
                                 </svg>
-                                <p class="text-base">{{ entity.customerEmail }}</p>
+                                <p class="text-xl">{{ entity.customerEmail }}</p>
                             </span>
                         </section>
                     </div>
@@ -48,7 +48,7 @@ defineProps({
                         alt="compresor" />
 
                     <div class="text-blue900 w-full">
-                        <div class="text-3xl font-bold pb-2">{{ entity.productName }}</div>
+                        <div class="text-4xl font-bold pb-2">{{ entity.productName }}</div>
 
 
                         <section class="flex flex-wrap gap-4" v-if="entity.brandName">
@@ -65,7 +65,7 @@ defineProps({
                                     <path d="M9 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
                                     <path d="M18 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
                                 </svg>
-                                <p class="text-base">{{ entity.brandName }}</p>
+                                <p class="text-xl">{{ entity.brandName }}</p>
                             </span>
 
                             <span v-if="entity.productByCustomerSerialKey"
@@ -80,7 +80,7 @@ defineProps({
                                     </path>
                                     <path d="M15 9h.01"></path>
                                 </svg>
-                                <p class="text-base">{{ entity.productByCustomerSerialKey }}</p>
+                                <p class="text-xl">{{ entity.productByCustomerSerialKey }}</p>
                             </span>
                         </section>
                     </div>
