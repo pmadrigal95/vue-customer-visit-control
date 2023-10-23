@@ -10,6 +10,8 @@ const router = useRouter();
 
 import useVisitControl from '@/composables/UseVisitControl';
 
+import { Modal, Input } from 'flowbite-vue';
+
 import BaseSkeletonLoader from '@/components/core/loaders/BaseSkeletonLoader.vue';
 
 import BaseSendEmailTemplateViewComponent from '@/views/report/components/display/BaseSendEmailTemplateViewComponent.vue';
@@ -21,6 +23,17 @@ const props = defineProps({
     },
 });
 
+const isShowModal = ref(false);
+
+const closeModal = () => {
+    isShowModal.value = false;
+};
+
+const showModal = () => {
+    isShowModal.value = true;
+};
+
+const pdfName = ref(undefined);
 
 // keep up with form data
 const form = ref({});
@@ -32,6 +45,7 @@ const getById = async () => {
         loading.value = true;
         const response = await useVisitControl().visitControlById({ id: props.id });
         form.value = response;
+        pdfName.value = `report-${form.value.customerName}-${form.value.brandName}-${form.value.productName}-${form.value.productByCustomerSerialKey}-${form.value.visitDate}`;
         loading.value = false;
     } catch (error) {
         loading.value = false;
@@ -55,11 +69,13 @@ const exportToPDF = async () => {
     try {
         html2pdf(document.getElementById('report'), {
             margin: 1,
-            filename: `report${form.value.customerName}-${form.value.visitDate}.pdf`,
+            filename: `${pdfName.value}.pdf`,
             image: { type: 'jpeg', quality: 0.20 },
             html2canvas: { scale: 2, useCORS: true },
             jsPDF: { unit: 'in', format: 'a4', orientation: 'p' }
         });
+
+        closeModal();
 
     } catch (error) {
         alert(error.message);
@@ -81,13 +97,38 @@ onMounted(() => {
 </script>
 
 <template>
+    <Modal v-if="isShowModal" @close="closeModal">
+        <template #header>
+            <div class="flex items-center text-lg">
+                Generar Reporte PDF
+            </div>
+        </template>
+        <template #body>
+            <form class="space-y-6" @submit.prevent="exportToPDF()">
+                <div class="w-full">
+                    <Input v-model="pdfName" placeholder="Ingrese el nombre del archivo" label="Nombre del archivo"
+                        required type="text" />
+                </div>
+                <div class="flex justify-between">
+                    <button @click="closeModal" type="button"
+                        class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">
+                        Cancelar
+                    </button>
+                    <button type="submit"
+                        class="text-white bg-blue900 hover:bg-blue800 focus:ring-4 focus:outline-none focus:ring-orange900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        Crear
+                    </button>
+                </div>
+            </form>
+        </template>
+    </Modal>
     <section class='py-4 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12' v-if='!loading'>
         <h2 class='mb-10 text-left text-4xl font-bold leading-9 tracking-tight text-blue900'>
             Reporte</h2>
 
         <section>
             <div class='flex flex-wrap md:flex-row md:justify-end gap-4 mb-4 md:-mt-10'>
-                <button @click='exportToPDF'
+                <button @click='showModal'
                     class='text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center'>
                     Descargar
                 </button>
@@ -218,7 +259,8 @@ onMounted(() => {
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Porcentaje Carga (%)</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.loadPercentage }} %</td>
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.loadPercentage }} %
+                            </td>
                         </tr>
                     </tbody>
                 </table>

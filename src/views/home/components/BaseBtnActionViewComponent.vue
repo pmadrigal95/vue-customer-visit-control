@@ -10,7 +10,7 @@ const getVisitControlReport = async () => {
         const response = await useVisitControl().visitControlReport({ query: {}, });
         if (response?.content.length > 0) {
             generateReport({
-                fileName: `Reporte de visitas-${baseDateHelper.$_getRangeDay()}`,
+                fileName: `Reporte de visitas Mes: ${baseDateHelper.$_getRangeDay()}`,
                 data: [response],
             });
         } else {

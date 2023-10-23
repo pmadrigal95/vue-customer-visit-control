@@ -81,7 +81,7 @@ const getVisitControlReport = async () => {
         });
         if (response?.content.length > 0) {
             generateReport({
-                fileName: `Reporte de visitas-${entity.value.initialDate}-${entity.value.endDate}`,
+                fileName: `Reporte de visitas-${entity.value.requiredDates ? entity.value.initialDate : ''}-${entity.value.requiredDates ? entity.value.endDate : ''}~${entity.value.customerId ? entity.value.customerId : ''}${entity.value.productId ? entity.value.productId : ''}`,
                 data: [response],
             });
 
@@ -142,7 +142,8 @@ watch(
             Reporte de visitas semanal</button>
 
         <button @click="openCustomerReport"
-            class=" text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center">Reporte por
+            class=" text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center">Reporte
+            por
             Cliente</button>
     </div>
     <Modal v-if="isShowModal" @close="closeModal">
@@ -161,8 +162,8 @@ watch(
                                 placeholder="Ingresa el cliente" label="Cliente" required />
                         </div>
                         <div class="mb-4">
-                            <Select v-model="entity.productId" :options="list.productList" placeholder="Ingresa el compresor"
-                                label="Compresor" required />
+                            <Select v-model="entity.productId" :options="list.productList"
+                                placeholder="Ingresa el compresor" label="Compresor" required />
                         </div>
                         <div class="mb-2">
                             <Toggle v-model="entity.requiredDates" label="Seleccionar rango de fechas" />
@@ -190,5 +191,6 @@ watch(
                     </div>
                 </form>
             </section>
-    </template>
-</Modal></template>
+        </template>
+    </Modal>
+</template>
