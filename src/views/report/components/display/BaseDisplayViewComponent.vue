@@ -213,88 +213,88 @@ onMounted(() => {
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Horas Totales</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.totalHours }}</td>
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.totalHours) }}</td>
                         </tr>
 
                         <tr class='border-b border-gray-200' v-if='form.chargingHours'>
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Horas Carga</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.chargingHours }}
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.chargingHours) }}
                             </td>
                         </tr>
                         <tr class='border-b border-gray-200' v-if='form.pPsi'>
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Presión psi</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.pPsi }}</td>
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.pPsi) }}</td>
                         </tr>
 
                         <tr class='border-b border-gray-200' v-if='form.temperature'>
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Temperatura</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.temperature }}</td>
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.temperature) }}</td>
                         </tr>
 
                         <tr class='border-b border-gray-200' v-if='form.prp'>
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Punto de rocío PRP</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.prp }}</td>
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.prp) }}</td>
                         </tr>
                         <tr class='border-b border-gray-200' v-if='form.engineStarts'>
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Arranques Motor</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.engineStarts }}</td>
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.engineStarts) }}</td>
                         </tr>
                         <tr class='border-b border-gray-200' v-if='form.loadRelay'>
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Relecarga</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.loadRelay }}</td>
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.loadRelay) }}</td>
                         </tr>
                         <tr class='border-b border-gray-200' v-if='form.loadPercentage && !form.productDynamicPercentage'>
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Porcentaje Carga (%)</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.loadPercentage }}
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.loadPercentage) }}
                             </td>
                         </tr>
                         <tr class='border-b border-gray-200' v-if='form.vsd020 && form.productDynamicPercentage'>
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Porcentaje Carga (20% - 40%)</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.vsd020 }}
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.vsd020) }}
                             </td>
                         </tr>
                         <tr class='border-b border-gray-200' v-if='form.vsd2040 && form.productDynamicPercentage'>
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Porcentaje Carga (20% - 40%)</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.vsd2040 }}
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.vsd2040) }}
                             </td>
                         </tr>
                         <tr class='border-b border-gray-200' v-if='form.vsd4060 && form.productDynamicPercentage'>
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Porcentaje Carga (40% - 60%)</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.vsd4060 }}
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.vsd4060) }}
                             </td>
                         </tr>
                         <tr class='border-b border-gray-200' v-if='form.vsd6080 && form.productDynamicPercentage'>
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Porcentaje Carga (60% - 80%)</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.vsd6080 }}
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.vsd6080) }}
                             </td>
                         </tr>
                         <tr class='border-b border-gray-200' v-if='form.vsd80100 && form.productDynamicPercentage'>
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Porcentaje Carga (80% - 100%)</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.vsd80100 }}
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.vsd80100) }}
                             </td>
                         </tr>
                     </tbody>
