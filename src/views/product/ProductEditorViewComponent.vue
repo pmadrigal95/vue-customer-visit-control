@@ -110,7 +110,7 @@ onMounted(() => {
                             label="Marca del compresor" required />
                     </div>
                     <div>
-                        <Toggle v-model="form.dynamicPercentage" label="Es porcentaje variable" />
+                        <Toggle v-model="form.dynamicPercentage" label="Es velocidad variable" />
                     </div>
                     <div>
                         <Textarea v-model="form.description" rows="4" placeholder="Ingresa su descripción"
