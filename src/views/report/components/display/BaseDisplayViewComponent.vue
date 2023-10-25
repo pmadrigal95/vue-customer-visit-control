@@ -106,8 +106,8 @@ onMounted(() => {
         <template #body>
             <form class="space-y-6" @submit.prevent="exportToPDF()">
                 <div class="w-full">
-                    <Input v-model="pdfName" placeholder="Ingrese el nombre del archivo" label="Nombre del archivo"
-                        required type="text" />
+                    <Input v-model="pdfName" placeholder="Ingrese el nombre del archivo" label="Nombre del archivo" required
+                        type="text" />
                 </div>
                 <div class="flex justify-between">
                     <button @click="closeModal" type="button"
@@ -255,17 +255,61 @@ onMounted(() => {
                             </td>
                             <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.loadRelay }}</td>
                         </tr>
-                        <tr class='border-b border-gray-200' v-if='form.loadPercentage'>
+                        <tr class='border-b border-gray-200' v-if='form.loadPercentage && !form.productDynamicPercentage'>
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Porcentaje Carga (%)</div>
                             </td>
                             <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.loadPercentage }}
                             </td>
                         </tr>
+                        <tr class='border-b border-gray-200' v-if='form.vsd020 && form.productDynamicPercentage'>
+                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                <div class='font-medium text-gray-900'>Porcentaje Carga (20% - 40%)</div>
+                            </td>
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.vsd020 }}
+                            </td>
+                        </tr>
+                        <tr class='border-b border-gray-200' v-if='form.vsd2040 && form.productDynamicPercentage'>
+                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                <div class='font-medium text-gray-900'>Porcentaje Carga (20% - 40%)</div>
+                            </td>
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.vsd2040 }}
+                            </td>
+                        </tr>
+                        <tr class='border-b border-gray-200' v-if='form.vsd4060 && form.productDynamicPercentage'>
+                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                <div class='font-medium text-gray-900'>Porcentaje Carga (40% - 60%)</div>
+                            </td>
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.vsd4060 }}
+                            </td>
+                        </tr>
+                        <tr class='border-b border-gray-200' v-if='form.vsd6080 && form.productDynamicPercentage'>
+                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                <div class='font-medium text-gray-900'>Porcentaje Carga (60% - 80%)</div>
+                            </td>
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.vsd6080 }}
+                            </td>
+                        </tr>
+                        <tr class='border-b border-gray-200' v-if='form.vsd80100 && form.productDynamicPercentage'>
+                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                <div class='font-medium text-gray-900'>Porcentaje Carga (80% - 100%)</div>
+                            </td>
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.vsd80100 }}
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 
-                <div class='text-left mt-10' v-if="form.observations ">
+                <div class='text-left mt-24' v-if="form.observations && form.productDynamicPercentage">
+                    <p>
+                        Observaciones
+                    </p>
+                    <p class='text-gray-500 text-sm'>
+                        {{ form.observations }}
+                    </p>
+                </div>
+
+                <div class='text-left mt-2' v-if="form.observations && !form.productDynamicPercentage">
                     <p>
                         Observaciones
                     </p>
