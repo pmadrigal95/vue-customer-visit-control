@@ -112,7 +112,29 @@ onMounted(() => {
                             <Input v-model='form.loadRelay' placeholder='Ingresa Relecarga' label='Relecarga' type='number'
                                 step=".01" />
                         </div>
-                        <section class="flex gap-4">
+                        <section v-if="form.productDynamicPercentage">
+                            <div class="mb-4">
+                                <Input v-model='form.vsd020' placeholder='Ingresa Porcentaje Carga (0% - 20%)'
+                                    label='Porcentaje Carga (0% - 20%)' type='number' step=".01" />
+                            </div>
+                            <div class="mb-4">
+                                <Input v-model='form.vsd2040' placeholder='Ingresa Porcentaje Carga (20% - 40%)'
+                                    label='Porcentaje Carga (20% - 40%)' type='number' step=".01" />
+                            </div>
+                            <div class="mb-4">
+                                <Input v-model='form.vsd4060' placeholder='Ingresa Porcentaje Carga (40% - 60%)'
+                                    label='Porcentaje Carga (40% - 60%)' type='number' step=".01" />
+                            </div>
+                            <div class="mb-4">
+                                <Input v-model='form.vsd6080' placeholder='Ingresa Porcentaje Carga (60% - 80%)'
+                                    label='Porcentaje Carga (60% - 80%)' type='number' step=".01" />
+                            </div>
+                            <div>
+                                <Input v-model='form.vsd80100' placeholder='Ingresa Porcentaje Carga (80% - 100%)'
+                                    label='Porcentaje Carga (80% - 100%)' type='number' step=".01" />
+                            </div>
+                        </section>
+                        <section class="flex gap-4" v-else>
                             <Input v-model='form.loadPercentage' placeholder='Ingresa Porcentaje carga'
                                 label='Porcentaje Carga (%)' type='number' step=".01" class="grow" />
                             <button type="button" @click="setLoadPercentage"
@@ -150,5 +172,6 @@ onMounted(() => {
                 </section>
             </section>
             <BaseSkeletonLoader v-else />
-    </template>
-</AppTemplateComponent></template>
+        </template>
+    </AppTemplateComponent>
+</template>

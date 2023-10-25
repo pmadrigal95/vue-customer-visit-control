@@ -92,29 +92,51 @@ onMounted(() => {
             </div>
             <div>
                 <Input v-model='entity.totalHours' placeholder='Ingresa total de horas' label='Total de horas'
-                    type='number' />
+                    type='number' step=".01" />
             </div>
             <div>
-                <Input v-model='entity.chargingHours' placeholder='Ingresa horas carga' label='Horas carga' type='number' />
+                <Input v-model='entity.chargingHours' placeholder='Ingresa horas carga' label='Horas carga' type='number' step=".01" />
             </div>
             <div>
-                <Input v-model='entity.pPsi' placeholder='Ingresa Presión Psi' label='Presión psi' type='number' />
+                <Input v-model='entity.pPsi' placeholder='Ingresa Presión Psi' label='Presión psi' type='number' step=".01" />
             </div>
             <div>
                 <Input v-model='entity.temperature' placeholder='Ingresa temperatura' label='Temperatura' type='text' />
             </div>
             <div>
                 <Input v-model='entity.prp' placeholder='Ingresa Punto de rocío PRP' label='Punto de rocío PRP'
-                    type='number' />
+                    type='number' step=".01" />
             </div>
             <div>
                 <Input v-model='entity.engineStarts' placeholder='Ingresa Arranques Motor' label='Arranques Motor'
-                    type='number' />
+                    type='number' step=".01" />
             </div>
             <div>
-                <Input v-model='entity.loadRelay' placeholder='Ingresa Relecarga' label='Relecarga' type='number' />
+                <Input v-model='entity.loadRelay' placeholder='Ingresa Relecarga' label='Relecarga' type='number' step=".01" />
             </div>
-            <section class="flex gap-4">
+            <section v-if="entity.productDynamicPercentage">
+                <div class="mb-4">
+                    <Input v-model='entity.vsd020' placeholder='Ingresa Porcentaje Carga (0% - 20%)'
+                        label='Porcentaje Carga (0% - 20%)' type='number' step=".01" />
+                </div>
+                <div class="mb-4">
+                    <Input v-model='entity.vsd2040' placeholder='Ingresa Porcentaje Carga (20% - 40%)'
+                        label='Porcentaje Carga (20% - 40%)' type='number' step=".01" />
+                </div>
+                <div class="mb-4">
+                    <Input v-model='entity.vsd4060' placeholder='Ingresa Porcentaje Carga (40% - 60%)'
+                        label='Porcentaje Carga (40% - 60%)' type='number' step=".01" />
+                </div>
+                <div class="mb-4">
+                    <Input v-model='entity.vsd6080' placeholder='Ingresa Porcentaje Carga (60% - 80%)'
+                        label='Porcentaje Carga (60% - 80%)' type='number' step=".01" />
+                </div>
+                <div>
+                    <Input v-model='entity.vsd80100' placeholder='Ingresa Porcentaje Carga (80% - 100%)'
+                        label='Porcentaje Carga (80% - 100%)' type='number' step=".01" />
+                </div>
+            </section>
+            <section class="flex gap-4" v-else>
                 <Input v-model='entity.loadPercentage' placeholder='Ingresa Porcentaje carga' label='Porcentaje Carga (%)'
                     type='number' step=".01" class="grow" />
                 <button type="button" @click="setLoadPercentage"
@@ -143,7 +165,6 @@ onMounted(() => {
             <div>
                 <button type='submit'
                     class='w-full text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center'>Guardar</button>
-            </div>
-        </form>
-    </section>
-</template>
+        </div>
+    </form>
+</section></template>
