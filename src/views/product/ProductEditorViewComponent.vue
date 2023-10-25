@@ -9,7 +9,7 @@ import useBrand from "@/composables/UseBrand";
 
 import useProduct from "@/composables/UseProduct";
 
-import { Input, Textarea, Select } from 'flowbite-vue';
+import { Input, Textarea, Select, Toggle } from 'flowbite-vue';
 
 import BaseSkeletonLoader from '@/components/core/loaders/BaseSkeletonLoader.vue';
 
@@ -108,6 +108,9 @@ onMounted(() => {
                     <div>
                         <Select v-model="form.brandId" :options="list" placeholder="Ingresa su marca del compresor"
                             label="Marca del compresor" required />
+                    </div>
+                    <div>
+                        <Toggle v-model="form.dynamicPercentage" label="Es porcentaje variable" />
                     </div>
                     <div>
                         <Textarea v-model="form.description" rows="4" placeholder="Ingresa su descripción"

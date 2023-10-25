@@ -28,7 +28,7 @@ export default function UseProduct() {
 
     const { data, count, error } = await supabase
       .from("Products")
-      .select("id, name, description, Brand ( id, name )", { count: "exact" })
+      .select("id, name, dynamicPercentage, description, Brand ( id, name )", { count: "exact" })
       .order("name", { ascending: true })
       .range(from, to);
 
@@ -49,7 +49,7 @@ export default function UseProduct() {
   const productSearch = async ({ query: { name } }) => {
     const { data, count, error } = await supabase
       .from("Products")
-      .select("id, name, description, Brand ( id, name )", { count: "exact" })
+      .select("id, name, dynamicPercentage, description, Brand ( id, name )", { count: "exact" })
       .order("name", { ascending: true })
       .ilike("name", `%${name}%`);
 
@@ -88,7 +88,7 @@ export default function UseProduct() {
   const getProductById = async ({ id }) => {
     const { data, error } = await supabase
       .from("Products")
-      .select("id, name, description, brandId")
+      .select("id, name, description, brandId, dynamicPercentage")
       .eq("id", id);
 
     if (error) throw error;
@@ -99,10 +99,10 @@ export default function UseProduct() {
   /**
    * Insert
    */
-  const productInsert = async ({ name, description, brandId }) => {
+  const productInsert = async ({ name, description, brandId, dynamicPercentage }) => {
     const { error } = await supabase
       .from("Products")
-      .insert({ name, description, brandId });
+      .insert({ name, description, brandId, dynamicPercentage });
 
     if (error) throw error;
   };
@@ -110,10 +110,10 @@ export default function UseProduct() {
   /**
    * Update
    */
-  const productUpdate = async ({ id, name, description, brandId }) => {
+  const productUpdate = async ({ id, name, description, brandId, dynamicPercentage }) => {
     const { error } = await supabase
       .from("Products")
-      .update({ name, description, brandId })
+      .update({ name, description, brandId, dynamicPercentage })
       .eq("id", id);
 
     if (error) throw error;
@@ -131,11 +131,11 @@ export default function UseProduct() {
   /**
    * Update or Insert
    */
-  const productInsertOrUpdate = async ({ id, name, description, brandId }) => {
+  const productInsertOrUpdate = async ({ id, name, description, brandId, dynamicPercentage }) => {
     if (id) {
-      customerUpdate({ id, name, description, brandId });
+      customerUpdate({ id, name, description, brandId, dynamicPercentage });
     } else {
-      customerInsert({ name, description, brandId });
+      customerInsert({ name, description, brandId, dynamicPercentage });
     }
   };
 

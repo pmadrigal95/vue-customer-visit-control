@@ -68,7 +68,7 @@ const deleteItem = async () => {
 const exportToPDF = async () => {
     try {
         html2pdf(document.getElementById('report'), {
-            margin: 1,
+            margin: 0,
             filename: `${pdfName.value}.pdf`,
             image: { type: 'jpeg', quality: 0.20 },
             html2canvas: { scale: 2, useCORS: true },

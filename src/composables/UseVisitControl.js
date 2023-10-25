@@ -29,10 +29,11 @@ export default function UseVisitControl() {
     const { data, count, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
+        "id, ProductsByCustomer (id, serialKey, customerId, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
         { count: "exact" }
       )
       .order("visitDate", { ascending: false })
+      .order("ProductsByCustomer(customerId)", { ascending: false })
       .range(from, to);
 
     if (error) throw error;
@@ -56,11 +57,12 @@ export default function UseVisitControl() {
       const base = supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer !inner (id, serialKey, Customer !inner (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
+        "id, ProductsByCustomer !inner (id, serialKey, customerId, Customer !inner (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
         { count: "exact" }
       )
-      .order("visitDate", { ascending: false }).
-      lt("visitDate", finalDate)
+      .order("visitDate", { ascending: false })
+      .order("ProductsByCustomer(customerId)", { ascending: false })
+      .lt("visitDate", finalDate)
       .gt("visitDate", initialDate);
       
       const result = customerName ? base.filter("ProductsByCustomer.Customer.name", 'ilike', `%${customerName}%`) : base;
@@ -86,10 +88,11 @@ export default function UseVisitControl() {
     const { data, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
+        "id, ProductsByCustomer (id, serialKey, customerId, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
         { count: "exact" }
       )
       .order("visitDate", { ascending: false })
+      .order("ProductsByCustomer(customerId)", { ascending: false })
       .limit(5);
 
     if (error) throw error;
@@ -111,10 +114,11 @@ export default function UseVisitControl() {
     const { data, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
+        "id, ProductsByCustomer(id, serialKey, customerId, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
         { count: "exact" }
       )
-      .order("visitDate", { ascending: false })
+      .order("visitDate", { ascending: true })
+      .order("ProductsByCustomer(customerId)", { ascending: true })
       .lt("visitDate", endDate)
       .gt("visitDate", initDate);
 
@@ -140,10 +144,11 @@ export default function UseVisitControl() {
     const base = supabase
     .from("visitControl")
     .select(
-      "id, ProductsByCustomer !inner(id, serialKey, Customer !inner(id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
+      "id, ProductsByCustomer !inner(id, serialKey, customerId, Customer !inner(id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
       { count: "exact" }
     )
-    .order("visitDate", { ascending: false });
+    .order("visitDate", { ascending: true })
+    .order("ProductsByCustomer(customerId)", { ascending: true });
 
     let result = base;
 
