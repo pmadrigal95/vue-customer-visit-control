@@ -67,6 +67,11 @@ const deleteItem = async (id) => {
               {{ item.description }}
             </div>
 
+            <div v-if="item.nextMaintenance"
+              class="p-3 text-2xs italic font-normal text-gray-500 border border-gray-200 rounded-lg bg-gray-50 my-2">
+              {{ item.nextMaintenance }}
+            </div>
+
             <section class="flex flex-wrap gap-4 pt-4" v-if="item.brandName">
               <span v-if="item.brandName" class="gap-1 inline-flex items-center text-xs font-normal text-gray-500 ">
                 <svg xmlns="http://www.w3.org/2000/svg"

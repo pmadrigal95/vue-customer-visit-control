@@ -36,6 +36,11 @@ const cleanReport = () => {
     props.entity.notes = undefined;
     props.entity.loadRelay = undefined;
     props.entity.loadPercentage = undefined;
+    props.entity.vsd020 = undefined;
+    props.entity.vsd2040 = undefined;
+    props.entity.vsd4060 = undefined;
+    props.entity.vsd6080 = undefined;
+    props.entity.vsd80100 = undefined;
 };
 
 const returnProduct = () => {

@@ -11,11 +11,13 @@ const objectToMapper = ({ object }) => {
         customerName: object?.Customer?.name,
         productId: object?.Products?.id,
         productName: object?.Products?.name,
+        productDynamicPercentage: object?.Products?.dynamicPercentage,
         brandId: object?.Products?.Brand?.id,
         brandName: object?.Products?.Brand?.name,
         serialKey: object?.serialKey,
         description: object?.description,
         isBorrowed: object?.isBorrowed,
+        nextMaintenance: object?.nextMaintenance,
     };
 };
 

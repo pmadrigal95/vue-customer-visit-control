@@ -50,6 +50,11 @@ defineProps({
                     <div class="text-blue900 w-full">
                         <div class="text-4xl font-bold pb-2">{{ entity.productName }}</div>
 
+                        <div v-if="entity.productByCustomerNextMaintenance"
+                            class="p-3 text-2xs italic font-normal text-gray-500 border border-gray-200 rounded-lg bg-gray-50 my-2">
+                            {{ entity.productByCustomerNextMaintenance }}
+                        </div>
+
 
                         <section class="flex flex-wrap gap-4" v-if="entity.brandName">
                             <span v-if="entity.brandName"

@@ -152,6 +152,10 @@ watch(
                         <Toggle v-model=" form.isBorrowed " label="Es alquilado" />
                     </div>
                     <div>
+                        <Textarea v-model=" form.nextMaintenance " rows="4" placeholder="Ingresa su próximo mantenimiento"
+                            label="Información relacionada al próximo mantenimiento" />
+                    </div>
+                    <div>
                         <Textarea v-model=" form.description " rows="4" placeholder="Ingresa su descripción"
                             label="Descripción" />
                     </div>

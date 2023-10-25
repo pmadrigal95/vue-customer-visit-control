@@ -29,7 +29,7 @@ export default function UseVisitControl() {
     const { data, count, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, customerId, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
+        "id, ProductsByCustomer (id, serialKey, customerId, nextMaintenance, Customer (id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100",
         { count: "exact" }
       )
       .order("visitDate", { ascending: false })
@@ -49,37 +49,44 @@ export default function UseVisitControl() {
     };
   };
 
-
-    /**
+  /**
    * Search
    */
-    const visitControlSearch = async ({ query: { customerName, initialDate, finalDate } }) => {
-      const base = supabase
+  const visitControlSearch = async ({
+    query: { customerName, initialDate, finalDate },
+  }) => {
+    const base = supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer !inner (id, serialKey, customerId, Customer !inner (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
+        "id, ProductsByCustomer !inner (id, serialKey, customerId, nextMaintenance, Customer !inner (id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100",
         { count: "exact" }
       )
       .order("visitDate", { ascending: false })
       .order("ProductsByCustomer(customerId)", { ascending: false })
       .lt("visitDate", finalDate)
       .gt("visitDate", initialDate);
-      
-      const result = customerName ? base.filter("ProductsByCustomer.Customer.name", 'ilike', `%${customerName}%`) : base;
 
-      const { data, count, error } = await result;
-  
-      if (error) throw error;
-  
-      return {
-        props: {
-          data: visitControlMapper.$_visitControlMapper({
-            array: data,
-          }),
-          count: count,
-        },
-      };
+    const result = customerName
+      ? base.filter(
+          "ProductsByCustomer.Customer.name",
+          "ilike",
+          `%${customerName}%`
+        )
+      : base;
+
+    const { data, count, error } = await result;
+
+    if (error) throw error;
+
+    return {
+      props: {
+        data: visitControlMapper.$_visitControlMapper({
+          array: data,
+        }),
+        count: count,
+      },
     };
+  };
 
   /**
    * Dashboard
@@ -88,7 +95,7 @@ export default function UseVisitControl() {
     const { data, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, customerId, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
+        "id, ProductsByCustomer (id, serialKey, customerId, nextMaintenance, Customer (id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100",
         { count: "exact" }
       )
       .order("visitDate", { ascending: false })
@@ -114,7 +121,7 @@ export default function UseVisitControl() {
     const { data, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer(id, serialKey, customerId, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
+        "id, ProductsByCustomer(id, serialKey, customerId, nextMaintenance, Customer (id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100",
         { count: "exact" }
       )
       .order("visitDate", { ascending: true })
@@ -133,22 +140,16 @@ export default function UseVisitControl() {
    * Report Xlsx
    */
   const visitControlReportByCustomer = async ({
-    query: {
-      customerId,
-      productId,
-      initDate,
-      endDate,
-    },
+    query: { customerId, productId, initDate, endDate },
   }) => {
-
     const base = supabase
-    .from("visitControl")
-    .select(
-      "id, ProductsByCustomer !inner(id, serialKey, customerId, Customer !inner(id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes",
-      { count: "exact" }
-    )
-    .order("visitDate", { ascending: true })
-    .order("ProductsByCustomer(customerId)", { ascending: true });
+      .from("visitControl")
+      .select(
+        "id, ProductsByCustomer !inner(id, serialKey, customerId, nextMaintenance, Customer !inner(id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100",
+        { count: "exact" }
+      )
+      .order("visitDate", { ascending: true })
+      .order("ProductsByCustomer(customerId)", { ascending: true });
 
     let result = base;
 
@@ -157,16 +158,14 @@ export default function UseVisitControl() {
     }
 
     if (productId) {
-      result = result.eq("ProductsByCustomer.id", productId);;
+      result = result.eq("ProductsByCustomer.id", productId);
     }
 
     if (initDate && endDate) {
-      result = result.lt("visitDate", endDate)
-      .gt("visitDate", initDate);
+      result = result.lt("visitDate", endDate).gt("visitDate", initDate);
     }
 
     const { data, error } = await result;
-      
 
     if (error) throw error;
 
@@ -191,7 +190,7 @@ export default function UseVisitControl() {
     const { data, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, Customer (id, name, email),  Products ( id, name, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes"
+        "id, ProductsByCustomer (id, serialKey, nextMaintenance, Customer (id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100"
       )
       .eq("id", id);
 
@@ -218,6 +217,11 @@ export default function UseVisitControl() {
     notes,
     loadRelay,
     loadPercentage,
+    vsd020,
+    vsd2040,
+    vsd4060,
+    vsd6080,
+    vsd80100,
   }) => {
     const { data, error } = await supabase
       .from("visitControl")
@@ -234,6 +238,11 @@ export default function UseVisitControl() {
         notes,
         loadRelay,
         loadPercentage,
+        vsd020,
+        vsd2040,
+        vsd4060,
+        vsd6080,
+        vsd80100,
       })
       .select();
 
@@ -259,6 +268,11 @@ export default function UseVisitControl() {
     notes,
     loadRelay,
     loadPercentage,
+    vsd020,
+    vsd2040,
+    vsd4060,
+    vsd6080,
+    vsd80100,
   }) => {
     const { error } = await supabase
       .from("visitControl")
@@ -275,6 +289,11 @@ export default function UseVisitControl() {
         notes,
         loadRelay,
         loadPercentage,
+        vsd020,
+        vsd2040,
+        vsd4060,
+        vsd6080,
+        vsd80100,
       })
       .eq("id", id);
 

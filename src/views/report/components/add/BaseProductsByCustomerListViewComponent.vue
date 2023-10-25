@@ -47,6 +47,8 @@ const setProduct = (item) => {
     props.entity.productByCustomerSerialKey = item.serialKey;
     props.entity.productName = item.productName;
     props.entity.brandName = item.brandName;
+    props.entity.productByCustomerNextMaintenance = item.nextMaintenance;
+    props.entity.productDynamicPercentage = item.productDynamicPercentage;
 
     props.entity.step = 2;
 
@@ -57,6 +59,8 @@ const cleanProduct = () => {
     props.entity.productByCustomerSerialKey = undefined;
     props.entity.productName = undefined;
     props.entity.brandName = undefined;
+    props.entity.productByCustomerNextMaintenance = undefined;
+    props.entity.productDynamicPercentage = undefined;
 };
 
 const returnCustomer = () => {
@@ -102,6 +106,11 @@ onMounted(() => {
                             <div v-if="item.description"
                                 class="p-3 text-2xs italic font-normal text-gray-500 border border-gray-200 rounded-lg bg-gray-50 hover:bg-silver900">
                                 {{ item.description }}
+                            </div>
+
+                            <div v-if="item.nextMaintenance"
+                                class="p-3 text-2xs italic font-normal text-gray-500 border border-gray-200 rounded-lg bg-gray-50 hover:bg-silver900">
+                                {{ item.nextMaintenance }}
                             </div>
 
                             <section class="flex flex-wrap gap-4 pt-4" v-if="item.brandName">

@@ -20,7 +20,7 @@ export default function UseProductsByCustomer() {
     const { data, count, error } = await supabase
       .from("ProductsByCustomer")
       .select(
-        "id, serialKey, description, isBorrowed, Customer (id, name),  Products ( id, name, Brand ( id, name ) )",
+        "id, serialKey, description, isBorrowed, nextMaintenance, Customer (id, name),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )",
         { count: "exact" }
       )
       .order("id", { ascending: false })
@@ -50,7 +50,7 @@ export default function UseProductsByCustomer() {
     const { data, count, error } = await supabase
       .from("ProductsByCustomer")
       .select(
-        "id, serialKey, description, isBorrowed, Customer (id, name),  Products ( id, name, Brand ( id, name ) )",
+        "id, serialKey, description, isBorrowed, nextMaintenance, Customer (id, name),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )",
         { count: "exact" }
       )
       .eq("customerId", customerId)
@@ -100,7 +100,7 @@ export default function UseProductsByCustomer() {
     const getProductsByCustomerById = async ({ id }) => {
       const { data, error } = await supabase
         .from("ProductsByCustomer")
-        .select("id, serialKey, description, isBorrowed, Customer (id, name),  Products ( id, name, Brand ( id, name ) )")
+        .select("id, serialKey, description, isBorrowed, nextMaintenance, Customer (id, name),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )")
         .eq("id", id);
   
       if (error) throw error;
@@ -113,10 +113,10 @@ export default function UseProductsByCustomer() {
   /**
    * Insert
    */
-  const productsByCustomerInsert = async ({ customerId, productId, serialKey, description, isBorrowed }) => {
+  const productsByCustomerInsert = async ({ customerId, productId, serialKey, description, isBorrowed, nextMaintenance }) => {
     const { error } = await supabase
       .from("ProductsByCustomer")
-      .insert({ customerId, productId, serialKey, description, isBorrowed });
+      .insert({ customerId, productId, serialKey, description, isBorrowed, nextMaintenance });
 
     if (error) throw error;
   };
@@ -125,10 +125,10 @@ export default function UseProductsByCustomer() {
   /**
    * Update
    */
-  const productsByCustomerUpdate = async ({ id, customerId, productId, serialKey, description, isBorrowed }) => {
+  const productsByCustomerUpdate = async ({ id, customerId, productId, serialKey, description, isBorrowed, nextMaintenance }) => {
     const { error } = await supabase
       .from("ProductsByCustomer")
-      .update({ customerId, productId, serialKey, description, isBorrowed })
+      .update({ customerId, productId, serialKey, description, isBorrowed, nextMaintenance })
       .eq("id", id);
 
     if (error) throw error;

@@ -56,7 +56,7 @@ const deleteItem = async (id) => {
                                 class="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-white bg-blue800 rounded-full">{{
                                     item.visitDate }}</time>
                             <div v-if="item.productName || item.brandName" class="text-xl font-bold text-slate-900">{{
-                                `${item.productName} (${item.brandName})` }}</div>
+                                `${item.brandName} ${item.productName} (${item.productByCustomerSerialKey})` }}</div>
                         </div>
                         <!-- Content -->
                         <div v-if="item.observations"
