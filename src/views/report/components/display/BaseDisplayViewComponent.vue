@@ -234,7 +234,7 @@ onMounted(() => {
                             <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
                                 <div class='font-medium text-gray-900'>Temperatura</div>
                             </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.temperature) }}</td>
+                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.temperature }}</td>
                         </tr>
 
                         <tr class='border-b border-gray-200' v-if='form.prp'>
@@ -300,7 +300,7 @@ onMounted(() => {
                     </tbody>
                 </table>
 
-                <div class='text-left mt-24' v-if="form.observations && form.productDynamicPercentage">
+                <div class='text-left mt-32' v-if="form.observations && form.productDynamicPercentage">
                     <p>
                         Observaciones
                     </p>
