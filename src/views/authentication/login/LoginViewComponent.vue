@@ -49,11 +49,11 @@ const handleLogin = async () => {
                     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                         <form class="space-y-6" @submit.prevent="handleLogin()">
                             <div class="w-full">
-                                <Input v-model="form.email" placeholder="Ingresa su correo electrónico"
+                                <Input v-model.trim="form.email" placeholder="Ingresa su correo electrónico"
                                     label="Correo electrónico" required type="email" />
                             </div>
                             <div class="w-ful">
-                                <Input v-model="form.password" placeholder="Ingresa su contraseña " label="Contraseña "
+                                <Input v-model.trim="form.password" placeholder="Ingresa su contraseña " label="Contraseña "
                                     required type="password" />
                             </div>
                             <div>

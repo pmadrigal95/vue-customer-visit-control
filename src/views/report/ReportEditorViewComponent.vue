@@ -40,6 +40,9 @@ const getById = async () => {
 const update = async () => {
     try {
         loading.value = true;
+        for (const [key, value] of Object.entries(form.value)) {
+            form.value[key] = value ? value : null;
+        };
         await useVisitControl().visitControlUpdate(form.value);
         router.push({ name: 'ReportDisplayViewComponent', params: { Id: form.value.id }, });
     } catch (error) {
@@ -81,61 +84,61 @@ onMounted(() => {
                 <section class="bg-white rounded-lg px-10 py-5">
                     <form class='space-y-6' @submit.prevent='update()'>
                         <div>
-                            <Input v-model='form.visitDate' placeholder='Ingresa Fecha visita' label='Fecha Visita' required
+                            <Input v-model.trim='form.visitDate' placeholder='Ingresa Fecha visita' label='Fecha Visita' required
                                 type='date' />
                         </div>
                         <div>
-                            <Input v-model='form.totalHours' placeholder='Ingresa total de horas' label='Total de horas'
+                            <Input v-model.number='form.totalHours' placeholder='Ingresa total de horas' label='Total de horas'
                                 type='number' step=".01" />
                         </div>
                         <div>
-                            <Input v-model='form.chargingHours' placeholder='Ingresa horas carga' label='Horas carga'
+                            <Input v-model.number='form.chargingHours' placeholder='Ingresa horas carga' label='Horas carga'
                                 type='number' step=".01" />
                         </div>
                         <div>
-                            <Input v-model='form.pPsi' placeholder='Ingresa Presión Psi' label='Presión psi' type='number'
+                            <Input v-model.number='form.pPsi' placeholder='Ingresa Presión Psi' label='Presión psi' type='number'
                                 step=".01" />
                         </div>
                         <div>
-                            <Input v-model='form.temperature' placeholder='Ingresa temperatura' label='Temperatura'
+                            <Input v-model.trim='form.temperature' placeholder='Ingresa temperatura' label='Temperatura'
                                 type='text' />
                         </div>
                         <div>
-                            <Input v-model='form.prp' placeholder='Ingresa Punto de rocío PRP' label='Punto de rocío PRP'
+                            <Input v-model.number='form.prp' placeholder='Ingresa Punto de rocío PRP' label='Punto de rocío PRP'
                                 type='number' step=".01" />
                         </div>
                         <div>
-                            <Input v-model='form.engineStarts' placeholder='Ingresa Arranques Motor' label='Arranques Motor'
+                            <Input v-model.number='form.engineStarts' placeholder='Ingresa Arranques Motor' label='Arranques Motor'
                                 type='number' step=".01" />
                         </div>
                         <div>
-                            <Input v-model='form.loadRelay' placeholder='Ingresa Relecarga' label='Relecarga' type='number'
+                            <Input v-model.number='form.loadRelay' placeholder='Ingresa Relecarga' label='Relecarga' type='number'
                                 step=".01" />
                         </div>
                         <section v-if="form.productDynamicPercentage">
                             <div class="mb-4">
-                                <Input v-model='form.vsd020' placeholder='Ingresa Porcentaje Carga (0% - 20%)'
+                                <Input v-model.number='form.vsd020' placeholder='Ingresa Porcentaje Carga (0% - 20%)'
                                     label='Porcentaje Carga (0% - 20%)' type='number' step=".01" />
                             </div>
                             <div class="mb-4">
-                                <Input v-model='form.vsd2040' placeholder='Ingresa Porcentaje Carga (20% - 40%)'
+                                <Input v-model.number='form.vsd2040' placeholder='Ingresa Porcentaje Carga (20% - 40%)'
                                     label='Porcentaje Carga (20% - 40%)' type='number' step=".01" />
                             </div>
                             <div class="mb-4">
-                                <Input v-model='form.vsd4060' placeholder='Ingresa Porcentaje Carga (40% - 60%)'
+                                <Input v-model.number='form.vsd4060' placeholder='Ingresa Porcentaje Carga (40% - 60%)'
                                     label='Porcentaje Carga (40% - 60%)' type='number' step=".01" />
                             </div>
                             <div class="mb-4">
-                                <Input v-model='form.vsd6080' placeholder='Ingresa Porcentaje Carga (60% - 80%)'
+                                <Input v-model.number='form.vsd6080' placeholder='Ingresa Porcentaje Carga (60% - 80%)'
                                     label='Porcentaje Carga (60% - 80%)' type='number' step=".01" />
                             </div>
                             <div>
-                                <Input v-model='form.vsd80100' placeholder='Ingresa Porcentaje Carga (80% - 100%)'
+                                <Input v-model.number='form.vsd80100' placeholder='Ingresa Porcentaje Carga (80% - 100%)'
                                     label='Porcentaje Carga (80% - 100%)' type='number' step=".01" />
                             </div>
                         </section>
                         <section class="flex gap-4" v-else>
-                            <Input v-model='form.loadPercentage' placeholder='Ingresa Porcentaje carga'
+                            <Input v-model.number='form.loadPercentage' placeholder='Ingresa Porcentaje carga'
                                 label='Porcentaje Carga (%)' type='number' step=".01" class="grow" />
                             <button type="button" @click="setLoadPercentage"
                                 class="border border-white bg-white focus:ring-4 focus:outline-none focus:ring-orange900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
@@ -158,11 +161,11 @@ onMounted(() => {
                                 </svg></button>
                         </section>
                         <div>
-                            <Textarea v-model='form.observations' rows='4' placeholder='Ingresa Observaciones'
+                            <Textarea v-model.trim='form.observations' rows='4' placeholder='Ingresa Observaciones'
                                 label='Observaciones' />
                         </div>
                         <div>
-                            <Textarea v-model='form.notes' rows='4' placeholder='Ingresa notas' label='Notas' />
+                            <Textarea v-model.trim='form.notes' rows='4' placeholder='Ingresa notas' label='Notas' />
                         </div>
                         <div>
                             <button type='submit'

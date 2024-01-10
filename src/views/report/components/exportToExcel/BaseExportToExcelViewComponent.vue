@@ -158,25 +158,25 @@ watch(
                 <form class="space-y-6" @submit.prevent="getVisitControlReport()" v-if="!loading">
                     <section v-if="entity.isCustomerReport">
                         <div class="mb-2">
-                            <Select v-model="entity.customerId" :options="list.customerList"
+                            <Select v-model.number="entity.customerId" :options="list.customerList"
                                 placeholder="Ingresa el cliente" label="Cliente" required />
                         </div>
                         <div class="mb-4">
-                            <Select v-model="entity.productId" :options="list.productList"
+                            <Select v-model.number="entity.productId" :options="list.productList"
                                 placeholder="Ingresa el compresor" label="Compresor" required />
                         </div>
                         <div class="mb-2">
-                            <Toggle v-model="entity.requiredDates" label="Seleccionar rango de fechas" />
+                            <Toggle v-model.trim="entity.requiredDates" label="Seleccionar rango de fechas" />
                         </div>
                     </section>
 
                     <section v-if="entity.requiredDates">
                         <div class="mb-2">
-                            <Input v-model='entity.initialDate' label='Fecha Inicio' required type='date' />
+                            <Input v-model.trim='entity.initialDate' label='Fecha Inicio' required type='date' />
                         </div>
 
                         <div class="mb-2">
-                            <Input v-model='entity.endDate' label='Fecha Final' required type='date' />
+                            <Input v-model.trim='entity.endDate' label='Fecha Final' required type='date' />
                         </div>
                     </section>
                     <div class="flex justify-between">

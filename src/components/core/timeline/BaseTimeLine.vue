@@ -35,7 +35,7 @@ const deleteItem = async (id) => {
                 <div class="-my-6">
 
                     <!-- Item #1 -->
-                    <div class="relative pl-8 sm:pl-32 py-6 group" v-for="item in list" :key="item.id">
+                    <div class="relative pl-8 sm:pl-32 py-6 group" v-for="item in list" :key="item.id" @click="update(item.id)">
                         <section class="flex w-full justify-end pr-1 mt-4">
                             <button @click="deleteItem(item.id)">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"

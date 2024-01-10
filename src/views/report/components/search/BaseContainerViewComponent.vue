@@ -33,15 +33,15 @@ const search = () => {
     <section class="w-full h-full bg-white rounded-xl mx-auto md:mb-4">
         <form class='px-4 py-2 space-y-6' @submit.prevent='search()'>
             <div>
-                <Input v-model='entity.companyName' placeholder='Ingresa nombre de cliente' label='Cliente' type='text' />
+                <Input v-model.trim='entity.companyName' placeholder='Ingresa nombre de cliente' label='Cliente' type='text' />
             </div>
 
             <div>
-                <Input v-model='entity.inititalDate' label='Fecha Inicio' required type='date' />
+                <Input v-model.trim='entity.inititalDate' label='Fecha Inicio' required type='date' />
             </div>
 
             <div>
-                <Input v-model='entity.endDate' label='Fecha Final' required type='date' />
+                <Input v-model.trim='entity.endDate' label='Fecha Final' required type='date' />
             </div>
 
             <div>

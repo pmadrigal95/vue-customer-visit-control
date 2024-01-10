@@ -92,7 +92,7 @@ onMounted(() => {
     <section v-else class='relative px-8 pb-2'>
         <section class='sticky -top-10 z-40 bg-white pb-5 pt-3'>
             <div class='flex gap-4'>
-                <Input size='lg' placeholder='Buscar' class='grow' v-model='search'>
+                <Input size='lg' placeholder='Buscar' class='grow' v-model.trim='search' @keyup.enter="Search">
                 <template #prefix>
                     <svg aria-hidden='true' class='w-5 h-5 text-blue900' fill='none' stroke='currentColor'
                         viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>

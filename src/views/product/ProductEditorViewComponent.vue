@@ -103,17 +103,17 @@ onMounted(() => {
                     Compresor</h2>
                 <form class="space-y-6" @submit.prevent="callToAction()">
                     <div>
-                        <Input v-model="form.name" placeholder="Ingresa su nombre del modelo del compresor" label="Nombre del modelo del compresor" required type="text" />
+                        <Input v-model.trim="form.name" placeholder="Ingresa su nombre del modelo del compresor" label="Nombre del modelo del compresor" required type="text" />
                     </div>
                     <div>
-                        <Select v-model="form.brandId" :options="list" placeholder="Ingresa su marca del compresor"
+                        <Select v-model.number="form.brandId" :options="list" placeholder="Ingresa su marca del compresor"
                             label="Marca del compresor" required />
                     </div>
                     <div>
-                        <Toggle v-model="form.dynamicPercentage" label="Es velocidad variable" />
+                        <Toggle v-model.trim="form.dynamicPercentage" label="Es velocidad variable" />
                     </div>
                     <div>
-                        <Textarea v-model="form.description" rows="4" placeholder="Ingresa su descripción"
+                        <Textarea v-model.trim="form.description" rows="4" placeholder="Ingresa su descripción"
                             label="Descripción" />
                     </div>
                     <div>

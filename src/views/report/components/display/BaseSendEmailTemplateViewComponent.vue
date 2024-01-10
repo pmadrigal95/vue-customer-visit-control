@@ -76,7 +76,7 @@ const sendEmail = () => {
         <template #body>
             <form class="space-y-6" @submit.prevent="sendEmail()" v-if="!loading">
                 <div class="w-full">
-                    <Input v-model="entity.customerEmail" placeholder="correo electrónico" label="Correo electrónico"
+                    <Input v-model.trim="entity.customerEmail" placeholder="correo electrónico" label="Correo electrónico"
                         required type="email" />
                 </div>
                 <div class="flex justify-between">

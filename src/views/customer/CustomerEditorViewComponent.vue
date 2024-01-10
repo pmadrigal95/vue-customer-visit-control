@@ -90,19 +90,19 @@ onMounted(() => {
                     Cliente</h2>
                 <form class='space-y-6' @submit.prevent='callToAction()'>
                     <div>
-                        <Input v-model='form.name' placeholder='Ingresa su nombre' label='Nombre' required type='text' />
+                        <Input v-model.trim='form.name' placeholder='Ingresa su nombre' label='Nombre' required type='text' />
                     </div>
                     <div>
-                        <Input v-model='form.email' placeholder='Ingresa su email ' label='Email ' type='email' />
+                        <Input v-model.trim='form.email' placeholder='Ingresa su email ' label='Email ' type='email' />
                     </div>
                     <div>
-                        <Input v-model='form.address' placeholder='Ingresa su dirección' label='Dirección' type='text' />
+                        <Input v-model.trim='form.address' placeholder='Ingresa su dirección' label='Dirección' type='text' />
                     </div>
                     <div>
-                        <Input v-model='form.phone' placeholder='Ingresa su teléfono ' label='Teléfono ' type='text' />
+                        <Input v-model.trim='form.phone' placeholder='Ingresa su teléfono ' label='Teléfono ' type='text' />
                     </div>
                     <div>
-                        <Textarea v-model='form.description' rows='4' placeholder='Ingresa su descripción'
+                        <Textarea v-model.trim='form.description' rows='4' placeholder='Ingresa su descripción'
                             label='Descripción' />
                     </div>
                     <div>

@@ -25,7 +25,7 @@ const props = defineProps({
 let loading = ref(false);
 
 const cleanReport = () => {
-    props.entity.visitDate = undefined;
+    props.entity.visitDate = $_getCurrentDateISOString();
     props.entity.totalHours = undefined;
     props.entity.chargingHours = undefined;
     props.entity.pPsi = undefined;
@@ -53,6 +53,10 @@ const returnProduct = () => {
 const insert = async () => {
     try {
         loading.value = true;
+        for (const [key, value] of Object.entries(props.entity)) {
+            props.entity[key] = value ? value : undefined;
+        };
+
         const id = await useVisitControl().visitControlInsert(props.entity);
         router.push({ name: 'ReportDisplayViewComponent', params: { Id: id }, });
     } catch (error) {
@@ -74,6 +78,21 @@ const setLoadPercentage = () => {
     }
 };
 
+const  $_getCurrentDateISOString = () => {
+        const date = new Date();
+
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+
+        // This arrangement can be altered based on how we want the date's format to appear.
+        let currentDate = `${year}-${month > 9 ? month : '0' + month}-${
+            day > 9 ? day : '0' + day
+        }`;
+
+        return currentDate;
+    };
+
 onMounted(() => {
     cleanReport();
 });
@@ -87,58 +106,62 @@ onMounted(() => {
         <BaseCardInfoViewComponent :entity="entity" class="mb-3" />
         <form class='space-y-6' @submit.prevent='insert()'>
             <div>
-                <Input v-model='entity.visitDate' placeholder='Ingresa Fecha visita' label='Fecha Visita' required
+                <Input v-model.trim='entity.visitDate' placeholder='Ingresa Fecha visita' label='Fecha Visita' required
                     type='date' />
             </div>
             <div>
-                <Input v-model='entity.totalHours' placeholder='Ingresa total de horas' label='Total de horas'
+                <Input v-model.number='entity.totalHours' placeholder='Ingresa total de horas' label='Total de horas'
                     type='number' step=".01" />
             </div>
             <div>
-                <Input v-model='entity.chargingHours' placeholder='Ingresa horas carga' label='Horas carga' type='number' step=".01" />
-            </div>
-            <div>
-                <Input v-model='entity.pPsi' placeholder='Ingresa Presión Psi' label='Presión psi' type='number' step=".01" />
-            </div>
-            <div>
-                <Input v-model='entity.temperature' placeholder='Ingresa temperatura' label='Temperatura' type='text' />
-            </div>
-            <div>
-                <Input v-model='entity.prp' placeholder='Ingresa Punto de rocío PRP' label='Punto de rocío PRP'
+                <Input v-model.number='entity.chargingHours' placeholder='Ingresa horas carga' label='Horas carga'
                     type='number' step=".01" />
             </div>
             <div>
-                <Input v-model='entity.engineStarts' placeholder='Ingresa Arranques Motor' label='Arranques Motor'
+                <Input v-model.number='entity.pPsi' placeholder='Ingresa Presión Psi' label='Presión psi' type='number'
+                    step=".01" />
+            </div>
+            <div>
+                <Input v-model.trim='entity.temperature' placeholder='Ingresa temperatura' label='Temperatura'
+                    type='text' />
+            </div>
+            <div>
+                <Input v-model.number='entity.prp' placeholder='Ingresa Punto de rocío PRP' label='Punto de rocío PRP'
                     type='number' step=".01" />
             </div>
             <div>
-                <Input v-model='entity.loadRelay' placeholder='Ingresa Relecarga' label='Relecarga' type='number' step=".01" />
+                <Input v-model.number='entity.engineStarts' placeholder='Ingresa Arranques Motor' label='Arranques Motor'
+                    type='number' step=".01" />
+            </div>
+            <div>
+                <Input v-model.number='entity.loadRelay' placeholder='Ingresa Relecarga' label='Relecarga' type='number'
+                    step=".01" />
             </div>
             <section v-if="entity.productDynamicPercentage">
                 <div class="mb-4">
-                    <Input v-model='entity.vsd020' placeholder='Ingresa Porcentaje Carga (0% - 20%)'
+                    <Input v-model.number='entity.vsd020' placeholder='Ingresa Porcentaje Carga (0% - 20%)'
                         label='Porcentaje Carga (0% - 20%)' type='number' step=".01" />
                 </div>
                 <div class="mb-4">
-                    <Input v-model='entity.vsd2040' placeholder='Ingresa Porcentaje Carga (20% - 40%)'
+                    <Input v-model.number='entity.vsd2040' placeholder='Ingresa Porcentaje Carga (20% - 40%)'
                         label='Porcentaje Carga (20% - 40%)' type='number' step=".01" />
                 </div>
                 <div class="mb-4">
-                    <Input v-model='entity.vsd4060' placeholder='Ingresa Porcentaje Carga (40% - 60%)'
+                    <Input v-model.number='entity.vsd4060' placeholder='Ingresa Porcentaje Carga (40% - 60%)'
                         label='Porcentaje Carga (40% - 60%)' type='number' step=".01" />
                 </div>
                 <div class="mb-4">
-                    <Input v-model='entity.vsd6080' placeholder='Ingresa Porcentaje Carga (60% - 80%)'
+                    <Input v-model.number='entity.vsd6080' placeholder='Ingresa Porcentaje Carga (60% - 80%)'
                         label='Porcentaje Carga (60% - 80%)' type='number' step=".01" />
                 </div>
                 <div>
-                    <Input v-model='entity.vsd80100' placeholder='Ingresa Porcentaje Carga (80% - 100%)'
+                    <Input v-model.number='entity.vsd80100' placeholder='Ingresa Porcentaje Carga (80% - 100%)'
                         label='Porcentaje Carga (80% - 100%)' type='number' step=".01" />
                 </div>
             </section>
             <section class="flex gap-4" v-else>
-                <Input v-model='entity.loadPercentage' placeholder='Ingresa Porcentaje carga' label='Porcentaje Carga (%)'
-                    type='number' step=".01" class="grow" />
+                <Input v-model.number='entity.loadPercentage' placeholder='Ingresa Porcentaje carga'
+                    label='Porcentaje Carga (%)' type='number' step=".01" class="grow" />
                 <button type="button" @click="setLoadPercentage"
                     class="border border-white bg-white focus:ring-4 focus:outline-none focus:ring-orange900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="text-blue900 icon icon-tabler icon-tabler-calculator"
@@ -156,11 +179,11 @@ onMounted(() => {
                     </svg></button>
             </section>
             <div>
-                <Textarea v-model='entity.observations' rows='4' placeholder='Ingresa Observaciones'
+                <Textarea v-model.trim='entity.observations' rows='4' placeholder='Ingresa Observaciones'
                     label='Observaciones' />
             </div>
             <div>
-                <Textarea v-model='entity.notes' rows='4' placeholder='Ingresa notas' label='Notas' />
+                <Textarea v-model.trim='entity.notes' rows='4' placeholder='Ingresa notas' label='Notas' />
             </div>
             <div>
                 <button type='submit'

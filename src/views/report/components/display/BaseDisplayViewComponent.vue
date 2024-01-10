@@ -106,8 +106,8 @@ onMounted(() => {
         <template #body>
             <form class="space-y-6" @submit.prevent="exportToPDF()">
                 <div class="w-full">
-                    <Input v-model="pdfName" placeholder="Ingrese el nombre del archivo" label="Nombre del archivo" required
-                        type="text" />
+                    <Input v-model.trim="pdfName" placeholder="Ingrese el nombre del archivo" label="Nombre del archivo"
+                        required type="text" />
                 </div>
                 <div class="flex justify-between">
                     <button @click="closeModal" type="button"
@@ -143,173 +143,189 @@ onMounted(() => {
                 </button>
             </div>
         </section>
-        <div class='w-full mx-auto p-6 bg-white rounded-lg shadow-sm' id='report'>
+        <section id='report'>
+            <div class='w-full mx-auto p-6 bg-white rounded-lg shadow-sm'>
 
-            <div class='grid grid-cols-2 items-center'>
-                <div>
-                    <!--  Company logo  -->
-                    <img src='https://ztdqsurxcyrlabzyhrud.supabase.co/storage/v1/object/public/src/images/flotec.png'
-                        alt='company-logo' height='100' width='100'>
+                <div class='grid grid-cols-2 items-center'>
+                    <div>
+                        <!--  Company logo  -->
+                        <img src='https://ztdqsurxcyrlabzyhrud.supabase.co/storage/v1/object/public/src/images/flotec.png'
+                            alt='company-logo' height='100' width='100'>
+                    </div>
+
+                    <div class='text-right'>
+                        <p>
+                            Grupo Flotec.
+                        </p>
+                        <p class='text-gray-500 text-sm'>
+                            ventas16@grupoflotec.com
+                        </p>
+                        <p class='text-gray-500 text-sm mt-1'>
+                            (+506) 7108 7038
+                        </p>
+                        <p class='text-gray-500 text-sm mt-1'>
+                            Julio Madrigal Ruiz
+                        </p>
+                    </div>
                 </div>
 
-                <div class='text-right'>
-                    <p>
-                        Grupo Flotec.
-                    </p>
-                    <p class='text-gray-500 text-sm'>
-                        ventas16@grupoflotec.com
-                    </p>
-                    <p class='text-gray-500 text-sm mt-1'>
-                        (+506) 7108 7038
-                    </p>
-                    <p class='text-gray-500 text-sm mt-1'>
-                        Julio Madrigal Ruiz
-                    </p>
-                </div>
-            </div>
+                <!-- Client info -->
+                <div class='grid grid-cols-2 items-center mt-8'>
+                    <div>
+                        <p class='font-bold text-gray-800'>
+                            Cliente :
+                        </p>
+                        <p class='text-gray-500'>
+                            {{ form.customerName }}
+                            <br />
+                            <span v-if="form.customerEmail">{{ form.customerEmail }}</span>
+                        </p>
+                    </div>
 
-            <!-- Client info -->
-            <div class='grid grid-cols-2 items-center mt-8'>
-                <div>
-                    <p class='font-bold text-gray-800'>
-                        Cliente :
-                    </p>
-                    <p class='text-gray-500'>
-                        {{ form.customerName }}
-                        <br />
-                        <span v-if="form.customerEmail">{{ form.customerEmail }}</span>
-                    </p>
+                    <div class='text-right'>
+                        <p>
+                            Compresor:
+                            <span class='text-gray-500'>{{ `${form.brandName} ${form.productName}` }}</span>
+                        </p>
+                        <p>
+                            Número de serie: <span class='text-gray-500'>{{ form.productByCustomerSerialKey }}</span>
+                            <br />
+                            Fecha de visita: <span class='text-gray-500'>{{ form.visitDate }}</span>
+                        </p>
+                    </div>
                 </div>
 
-                <div class='text-right'>
-                    <p>
-                        Compresor:
-                        <span class='text-gray-500'>{{ `${form.brandName} ${form.productName}` }}</span>
-                    </p>
-                    <p>
-                        Número de serie: <span class='text-gray-500'>{{ form.productByCustomerSerialKey }}</span>
-                        <br />
-                        Fecha de visita: <span class='text-gray-500'>{{ form.visitDate }}</span>
-                    </p>
-                </div>
-            </div>
+                <!-- Invoice Items -->
+                <div class='-mx-4 mt-8 flow-root sm:mx-0'>
+                    <table class='min-w-full'>
+                        <colgroup>
+                            <col class='w-full sm:w-1/2'>
+                            <col class='sm:w-1/6'>
+                        </colgroup>
+                        <thead class='border-b border-gray-300 text-gray-900'>
+                            <tr>
+                                <th scope='col'
+                                    class='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0'>
+                                    Categoría
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class='border-b border-gray-200' v-if='form.totalHours'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Horas Totales</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.totalHours) }}</td>
+                            </tr>
 
-            <!-- Invoice Items -->
-            <div class='-mx-4 mt-8 flow-root sm:mx-0'>
-                <table class='min-w-full'>
-                    <colgroup>
-                        <col class='w-full sm:w-1/2'>
-                        <col class='sm:w-1/6'>
-                    </colgroup>
-                    <thead class='border-b border-gray-300 text-gray-900'>
-                        <tr>
-                            <th scope='col' class='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0'>
-                                Categoría
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class='border-b border-gray-200' v-if='form.totalHours'>
-                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
-                                <div class='font-medium text-gray-900'>Horas Totales</div>
-                            </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.totalHours) }}</td>
-                        </tr>
+                            <tr class='border-b border-gray-200' v-if='form.chargingHours'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Horas Carga</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.chargingHours) }}
+                                </td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.pPsi'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Presión psi</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.pPsi) }}</td>
+                            </tr>
 
-                        <tr class='border-b border-gray-200' v-if='form.chargingHours'>
-                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
-                                <div class='font-medium text-gray-900'>Horas Carga</div>
-                            </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.chargingHours) }}
-                            </td>
-                        </tr>
-                        <tr class='border-b border-gray-200' v-if='form.pPsi'>
-                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
-                                <div class='font-medium text-gray-900'>Presión psi</div>
-                            </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.pPsi) }}</td>
-                        </tr>
+                            <tr class='border-b border-gray-200' v-if='form.temperature'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Temperatura</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.temperature }}
+                                </td>
+                            </tr>
 
-                        <tr class='border-b border-gray-200' v-if='form.temperature'>
-                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
-                                <div class='font-medium text-gray-900'>Temperatura</div>
-                            </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ form.temperature }}</td>
-                        </tr>
+                            <tr class='border-b border-gray-200' v-if='form.prp'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Punto de rocío PRP</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.prp) }}</td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.engineStarts'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Arranques Motor</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.engineStarts) }}</td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.loadRelay'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Relecarga</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.loadRelay) }}</td>
+                            </tr>
+                            <tr class='border-b border-gray-200'
+                                v-if='form.loadPercentage && !form.productDynamicPercentage'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Porcentaje Carga (%)</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.loadPercentage) }}
+                                </td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.vsd020 && form.productDynamicPercentage'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Porcentaje Carga (20% - 40%)</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.vsd020) }}
+                                </td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.vsd2040 && form.productDynamicPercentage'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Porcentaje Carga (20% - 40%)</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.vsd2040) }}
+                                </td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.vsd4060 && form.productDynamicPercentage'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Porcentaje Carga (40% - 60%)</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.vsd4060) }}
+                                </td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.vsd6080 && form.productDynamicPercentage'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Porcentaje Carga (60% - 80%)</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.vsd6080) }}
+                                </td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.vsd80100 && form.productDynamicPercentage'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Porcentaje Carga (80% - 100%)</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.vsd80100) }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                        <tr class='border-b border-gray-200' v-if='form.prp'>
-                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
-                                <div class='font-medium text-gray-900'>Punto de rocío PRP</div>
-                            </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.prp) }}</td>
-                        </tr>
-                        <tr class='border-b border-gray-200' v-if='form.engineStarts'>
-                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
-                                <div class='font-medium text-gray-900'>Arranques Motor</div>
-                            </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.engineStarts) }}</td>
-                        </tr>
-                        <tr class='border-b border-gray-200' v-if='form.loadRelay'>
-                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
-                                <div class='font-medium text-gray-900'>Relecarga</div>
-                            </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.loadRelay) }}</td>
-                        </tr>
-                        <tr class='border-b border-gray-200' v-if='form.loadPercentage && !form.productDynamicPercentage'>
-                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
-                                <div class='font-medium text-gray-900'>Porcentaje Carga (%)</div>
-                            </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.loadPercentage) }}
-                            </td>
-                        </tr>
-                        <tr class='border-b border-gray-200' v-if='form.vsd020 && form.productDynamicPercentage'>
-                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
-                                <div class='font-medium text-gray-900'>Porcentaje Carga (20% - 40%)</div>
-                            </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.vsd020) }}
-                            </td>
-                        </tr>
-                        <tr class='border-b border-gray-200' v-if='form.vsd2040 && form.productDynamicPercentage'>
-                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
-                                <div class='font-medium text-gray-900'>Porcentaje Carga (20% - 40%)</div>
-                            </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.vsd2040) }}
-                            </td>
-                        </tr>
-                        <tr class='border-b border-gray-200' v-if='form.vsd4060 && form.productDynamicPercentage'>
-                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
-                                <div class='font-medium text-gray-900'>Porcentaje Carga (40% - 60%)</div>
-                            </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.vsd4060) }}
-                            </td>
-                        </tr>
-                        <tr class='border-b border-gray-200' v-if='form.vsd6080 && form.productDynamicPercentage'>
-                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
-                                <div class='font-medium text-gray-900'>Porcentaje Carga (60% - 80%)</div>
-                            </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.vsd6080) }}
-                            </td>
-                        </tr>
-                        <tr class='border-b border-gray-200' v-if='form.vsd80100 && form.productDynamicPercentage'>
-                            <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
-                                <div class='font-medium text-gray-900'>Porcentaje Carga (80% - 100%)</div>
-                            </td>
-                            <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new Intl.NumberFormat("en-US").format(form.vsd80100) }}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <div class='text-left mt-32' v-if="form.observations && form.productDynamicPercentage">
+                        <p>
+                            Observaciones
+                        </p>
+                        <p class='text-gray-500 text-sm'>
+                            {{ form.observations }}
+                        </p>
+                    </div>
 
-                <div class='text-left mt-32' v-if="form.observations && form.productDynamicPercentage">
-                    <p>
-                        Observaciones
-                    </p>
-                    <p class='text-gray-500 text-sm'>
-                        {{ form.observations }}
-                    </p>
-                </div>
-
-                <div class='text-left mt-2' v-if="form.observations && !form.productDynamicPercentage">
+                    <div class='text-left mt-2' v-if="form.observations && !form.productDynamicPercentage">
                     <p>
                         Observaciones
                     </p>
@@ -320,6 +336,6 @@ onMounted(() => {
             </div>
         </div>
     </section>
+</section>
 
-    <BaseSkeletonLoader v-else />
-</template>
+<BaseSkeletonLoader v-else /></template>
