@@ -41,6 +41,19 @@ const cleanReport = () => {
     props.entity.vsd4060 = undefined;
     props.entity.vsd6080 = undefined;
     props.entity.vsd80100 = undefined;
+    props.entity.moduleHours = undefined;
+    props.entity.oilPressure = undefined;
+    props.entity.intercooler = undefined;
+    props.entity.outputElementOne = undefined;
+    props.entity.entryElementTwo = undefined;
+    props.entity.outputElementTwo = undefined;
+    props.entity.compressorOutlet = undefined;
+    props.entity.entryDryer = undefined;
+    props.entity.regeneration = undefined;
+    props.entity.deltaT = undefined;
+    props.entity.dpOilFilter = undefined;
+    props.entity.oilInjection = undefined;
+    props.entity.variatorCabinetTemperature = undefined;
 };
 
 const returnProduct = () => {
@@ -78,20 +91,19 @@ const setLoadPercentage = () => {
     }
 };
 
-const  $_getCurrentDateISOString = () => {
-        const date = new Date();
+const $_getCurrentDateISOString = () => {
+    const date = new Date();
 
-        let day = date.getDate();
-        let month = date.getMonth() + 1;
-        let year = date.getFullYear();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
 
-        // This arrangement can be altered based on how we want the date's format to appear.
-        let currentDate = `${year}-${month > 9 ? month : '0' + month}-${
-            day > 9 ? day : '0' + day
+    // This arrangement can be altered based on how we want the date's format to appear.
+    let currentDate = `${year}-${month > 9 ? month : '0' + month}-${day > 9 ? day : '0' + day
         }`;
 
-        return currentDate;
-    };
+    return currentDate;
+};
 
 onMounted(() => {
     cleanReport();
@@ -113,7 +125,7 @@ onMounted(() => {
                 <Input v-model.number='entity.totalHours' placeholder='Ingresa total de horas' label='Total de horas'
                     type='number' step=".01" />
             </div>
-            <div>
+            <div v-if="entity.productId != 55 && entity.productId != 56">
                 <Input v-model.number='entity.chargingHours' placeholder='Ingresa horas carga' label='Horas carga'
                     type='number' step=".01" />
             </div>
@@ -121,11 +133,11 @@ onMounted(() => {
                 <Input v-model.number='entity.pPsi' placeholder='Ingresa Presión Psi' label='Presión psi' type='number'
                     step=".01" />
             </div>
-            <div>
+            <div v-if="entity.productId != 55 && entity.productId != 56">
                 <Input v-model.trim='entity.temperature' placeholder='Ingresa temperatura' label='Temperatura'
                     type='text' />
             </div>
-            <div>
+            <div v-if="entity.productId != 55 && entity.productId != 56">
                 <Input v-model.number='entity.prp' placeholder='Ingresa Punto de rocío PRP' label='Punto de rocío PRP'
                     type='number' step=".01" />
             </div>
@@ -178,6 +190,72 @@ onMounted(() => {
                         <path d="M16 17l0 .01"></path>
                     </svg></button>
             </section>
+
+            <div v-if="entity.productId == 55 || entity.productId == 56">
+                <Input v-model.number='entity.moduleHours' placeholder='Ingresa horas módulo' label='Horas Módulo'
+                    type='number' step=".01" />
+            </div>
+
+            <div v-if="entity.productId == 55 || entity.productId == 56">
+                <Input v-model.number='entity.oilPressure' placeholder='Ingresa presión de aceite' label='Presión de aceite'
+                    type='number' step=".01" />
+            </div>
+
+            <div v-if="entity.productId == 56">
+                <Input v-model.number='entity.dpOilFilter' placeholder='Ingresa DP Filtro de aceite'
+                    label='DP Filtro de aceite' type='number' step=".01" />
+            </div>
+
+            <div v-if="entity.productId == 55 || entity.productId == 56">
+                <Input v-model.number='entity.intercooler' placeholder='Ingresa Refrigerador intermedio'
+                    label='Refrigerador intermedio' type='number' step=".01" />
+            </div>
+
+            <div v-if="entity.productId == 55 || entity.productId == 56">
+                <Input v-model.number='entity.outputElementOne' placeholder='Ingresa Salida elemento 1'
+                    label='Salida elemento 1' type='number' step=".01" />
+            </div>
+
+            <div v-if="entity.productId == 55 || entity.productId == 56">
+                <Input v-model.number='entity.entryElementTwo' placeholder='Ingresa Entrada elemento 2'
+                    label='Entrada elemento 2' type='number' step=".01" />
+            </div>
+
+            <div v-if="entity.productId == 56">
+                <Input v-model.number='entity.outputElementTwo' placeholder='Ingresa Salida elemento 2'
+                    label='Salida elemento 2' type='number' step=".01" />
+            </div>
+
+            <div v-if="entity.productId == 55 || entity.productId == 56">
+                <Input v-model.number='entity.compressorOutlet' placeholder='Ingresa Salida del compresor'
+                    label='Salida del compresor' type='number' step=".01" />
+            </div>
+
+            <div v-if="entity.productId == 55 || entity.productId == 56">
+                <Input v-model.number='entity.entryDryer' placeholder='Ingresa Entrada al secador'
+                    label='Entrada al secador' type='number' step=".01" />
+            </div>
+
+            <div v-if="entity.productId == 55">
+                <Input v-model.number='entity.regeneration' placeholder='Ingresa Regeneración' label='Regeneración'
+                    type='number' step=".01" />
+            </div>
+
+            <div v-if="entity.productId == 55">
+                <Input v-model.number='entity.deltaT' placeholder='Ingresa Delta T del elemento'
+                    label='Delta T del elemento' type='number' step=".01" />
+            </div>
+
+            <div v-if="entity.productId == 56">
+                <Input v-model.number='entity.oilInjection' placeholder='Ingresa Inyección de aceite'
+                    label='Inyección de aceite' type='number' step=".01" />
+            </div>
+
+            <div v-if="entity.productId == 56">
+                <Input v-model.number='entity.variatorCabinetTemperature' placeholder='Ingresa Temperatura armario variador'
+                    label='Temperatura armario variador' type='number' step=".01" />
+            </div>
+
             <div>
                 <Textarea v-model.trim='entity.observations' rows='4' placeholder='Ingresa Observaciones'
                     label='Observaciones' />
@@ -188,6 +266,7 @@ onMounted(() => {
             <div>
                 <button type='submit'
                     class='w-full text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center'>Guardar</button>
-        </div>
-    </form>
-</section></template>
+            </div>
+        </form>
+    </section>
+</template>

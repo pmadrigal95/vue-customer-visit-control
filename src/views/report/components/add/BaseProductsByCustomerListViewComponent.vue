@@ -45,6 +45,7 @@ const setProduct = (item) => {
 
     props.entity.productByCustomerId = item.id;
     props.entity.productByCustomerSerialKey = item.serialKey;
+    props.entity.productId = item.productId;
     props.entity.productName = item.productName;
     props.entity.brandName = item.brandName;
     props.entity.productByCustomerNextMaintenance = item.nextMaintenance;
@@ -57,6 +58,7 @@ const setProduct = (item) => {
 const cleanProduct = () => {
     props.entity.productByCustomerId = undefined;
     props.entity.productByCustomerSerialKey = undefined;
+    props.entity.productId = undefined;
     props.entity.productName = undefined;
     props.entity.brandName = undefined;
     props.entity.productByCustomerNextMaintenance = undefined;

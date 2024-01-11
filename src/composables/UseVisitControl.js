@@ -29,7 +29,7 @@ export default function UseVisitControl() {
     const { data, count, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, customerId, nextMaintenance, Customer (id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100",
+        "id, ProductsByCustomer (id, serialKey, customerId, nextMaintenance, Customer (id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100, moduleHours, oilPressure, intercooler, outputElementOne, entryElementTwo, outputElementTwo, compressorOutlet, entryDryer, regeneration, deltaT, dpOilFilter, oilInjection, variatorCabinetTemperature",
         { count: "exact" }
       )
       .order("visitDate", { ascending: false })
@@ -58,7 +58,7 @@ export default function UseVisitControl() {
     const base = supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer !inner (id, serialKey, customerId, nextMaintenance, Customer !inner (id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100",
+        "id, ProductsByCustomer !inner (id, serialKey, customerId, nextMaintenance, Customer !inner (id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100, moduleHours, oilPressure, intercooler, outputElementOne, entryElementTwo, outputElementTwo, compressorOutlet, entryDryer, regeneration, deltaT, dpOilFilter, oilInjection, variatorCabinetTemperature",
         { count: "exact" }
       )
       .order("visitDate", { ascending: false })
@@ -68,10 +68,10 @@ export default function UseVisitControl() {
 
     const result = customerName
       ? base.filter(
-          "ProductsByCustomer.Customer.name",
-          "ilike",
-          `%${customerName}%`
-        )
+        "ProductsByCustomer.Customer.name",
+        "ilike",
+        `%${customerName}%`
+      )
       : base;
 
     const { data, count, error } = await result;
@@ -95,7 +95,7 @@ export default function UseVisitControl() {
     const { data, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, customerId, nextMaintenance, Customer (id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100",
+        "id, ProductsByCustomer (id, serialKey, customerId, nextMaintenance, Customer (id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100, moduleHours, oilPressure, intercooler, outputElementOne, entryElementTwo, outputElementTwo, compressorOutlet, entryDryer, regeneration, deltaT, dpOilFilter, oilInjection, variatorCabinetTemperature",
         { count: "exact" }
       )
       .order("visitDate", { ascending: false })
@@ -121,7 +121,7 @@ export default function UseVisitControl() {
     const { data, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer(id, serialKey, customerId, nextMaintenance, Customer (id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100",
+        "id, ProductsByCustomer(id, serialKey, customerId, nextMaintenance, Customer (id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100, moduleHours, oilPressure, intercooler, outputElementOne, entryElementTwo, outputElementTwo, compressorOutlet, entryDryer, regeneration, deltaT, dpOilFilter, oilInjection, variatorCabinetTemperature",
         { count: "exact" }
       )
       .order("visitDate", { ascending: true })
@@ -145,7 +145,7 @@ export default function UseVisitControl() {
     const base = supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer !inner(id, serialKey, customerId, nextMaintenance, Customer !inner(id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100",
+        "id, ProductsByCustomer !inner(id, serialKey, customerId, nextMaintenance, Customer !inner(id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100, moduleHours, oilPressure, intercooler, outputElementOne, entryElementTwo, outputElementTwo, compressorOutlet, entryDryer, regeneration, deltaT, dpOilFilter, oilInjection, variatorCabinetTemperature",
         { count: "exact" }
       )
       .order("visitDate", { ascending: true })
@@ -190,7 +190,7 @@ export default function UseVisitControl() {
     const { data, error } = await supabase
       .from("visitControl")
       .select(
-        "id, ProductsByCustomer (id, serialKey, nextMaintenance, Customer (id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100"
+        "id, ProductsByCustomer (id, serialKey, nextMaintenance, Customer (id, name, email),  Products ( id, name, dynamicPercentage, Brand ( id, name ) )),visitDate, totalHours, chargingHours, pPsi, temperature, prp, engineStarts, loadRelay, loadPercentage, observations, notes, vsd020, vsd2040, vsd4060, vsd6080, vsd80100, moduleHours, oilPressure, intercooler, outputElementOne, entryElementTwo, outputElementTwo, compressorOutlet, entryDryer, regeneration, deltaT, dpOilFilter, oilInjection, variatorCabinetTemperature"
       )
       .eq("id", id);
 
@@ -222,6 +222,19 @@ export default function UseVisitControl() {
     vsd4060,
     vsd6080,
     vsd80100,
+    moduleHours,
+    oilPressure,
+    intercooler,
+    outputElementOne,
+    entryElementTwo,
+    outputElementTwo,
+    compressorOutlet,
+    entryDryer,
+    regeneration,
+    deltaT,
+    dpOilFilter,
+    oilInjection,
+    variatorCabinetTemperature,
   }) => {
     const { data, error } = await supabase
       .from("visitControl")
@@ -243,6 +256,19 @@ export default function UseVisitControl() {
         vsd4060,
         vsd6080,
         vsd80100,
+        moduleHours,
+        oilPressure,
+        intercooler,
+        outputElementOne,
+        entryElementTwo,
+        outputElementTwo,
+        compressorOutlet,
+        entryDryer,
+        regeneration,
+        deltaT,
+        dpOilFilter,
+        oilInjection,
+        variatorCabinetTemperature,
       })
       .select();
 
@@ -273,6 +299,19 @@ export default function UseVisitControl() {
     vsd4060,
     vsd6080,
     vsd80100,
+    moduleHours,
+    oilPressure,
+    intercooler,
+    outputElementOne,
+    entryElementTwo,
+    outputElementTwo,
+    compressorOutlet,
+    entryDryer,
+    regeneration,
+    deltaT,
+    dpOilFilter,
+    oilInjection,
+    variatorCabinetTemperature,
   }) => {
     const { error } = await supabase
       .from("visitControl")
@@ -294,6 +333,19 @@ export default function UseVisitControl() {
         vsd4060,
         vsd6080,
         vsd80100,
+        moduleHours,
+        oilPressure,
+        intercooler,
+        outputElementOne,
+        entryElementTwo,
+        outputElementTwo,
+        compressorOutlet,
+        entryDryer,
+        regeneration,
+        deltaT,
+        dpOilFilter,
+        oilInjection,
+        variatorCabinetTemperature,
       })
       .eq("id", id);
 

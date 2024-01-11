@@ -84,36 +84,36 @@ onMounted(() => {
                 <section class="bg-white rounded-lg px-10 py-5">
                     <form class='space-y-6' @submit.prevent='update()'>
                         <div>
-                            <Input v-model.trim='form.visitDate' placeholder='Ingresa Fecha visita' label='Fecha Visita' required
-                                type='date' />
+                            <Input v-model.trim='form.visitDate' placeholder='Ingresa Fecha visita' label='Fecha Visita'
+                                required type='date' />
                         </div>
                         <div>
-                            <Input v-model.number='form.totalHours' placeholder='Ingresa total de horas' label='Total de horas'
-                                type='number' step=".01" />
+                            <Input v-model.number='form.totalHours' placeholder='Ingresa total de horas'
+                                label='Total de horas' type='number' step=".01" />
                         </div>
-                        <div>
+                        <div v-if="form.productId != 55 && form.productId != 56">
                             <Input v-model.number='form.chargingHours' placeholder='Ingresa horas carga' label='Horas carga'
                                 type='number' step=".01" />
                         </div>
                         <div>
-                            <Input v-model.number='form.pPsi' placeholder='Ingresa Presión Psi' label='Presión psi' type='number'
-                                step=".01" />
+                            <Input v-model.number='form.pPsi' placeholder='Ingresa Presión Psi' label='Presión psi'
+                                type='number' step=".01" />
                         </div>
-                        <div>
+                        <div v-if="form.productId != 55 && form.productId != 56">
                             <Input v-model.trim='form.temperature' placeholder='Ingresa temperatura' label='Temperatura'
                                 type='text' />
                         </div>
-                        <div>
-                            <Input v-model.number='form.prp' placeholder='Ingresa Punto de rocío PRP' label='Punto de rocío PRP'
-                                type='number' step=".01" />
+                        <div v-if="form.productId != 55 && form.productId != 56">
+                            <Input v-model.number='form.prp' placeholder='Ingresa Punto de rocío PRP'
+                                label='Punto de rocío PRP' type='number' step=".01" />
                         </div>
                         <div>
-                            <Input v-model.number='form.engineStarts' placeholder='Ingresa Arranques Motor' label='Arranques Motor'
-                                type='number' step=".01" />
+                            <Input v-model.number='form.engineStarts' placeholder='Ingresa Arranques Motor'
+                                label='Arranques Motor' type='number' step=".01" />
                         </div>
                         <div>
-                            <Input v-model.number='form.loadRelay' placeholder='Ingresa Relecarga' label='Relecarga' type='number'
-                                step=".01" />
+                            <Input v-model.number='form.loadRelay' placeholder='Ingresa Relecarga' label='Relecarga'
+                                type='number' step=".01" />
                         </div>
                         <section v-if="form.productDynamicPercentage">
                             <div class="mb-4">
@@ -160,6 +160,73 @@ onMounted(() => {
                                     <path d="M16 17l0 .01"></path>
                                 </svg></button>
                         </section>
+
+                        <div v-if="form.productId == 55 || form.productId == 56">
+                            <Input v-model.number='form.moduleHours' placeholder='Ingresa horas módulo'
+                                label='Horas Módulo' type='number' step=".01" />
+                        </div>
+
+                        <div v-if="form.productId == 55 || form.productId == 56">
+                            <Input v-model.number='form.oilPressure' placeholder='Ingresa Presión de aceite'
+                                label='Presión de aceite' type='number' step=".01" />
+                        </div>
+
+                        <div v-if="form.productId == 56">
+                            <Input v-model.number='form.dpOilFilter' placeholder='Ingresa DP Filtro de aceite'
+                                label='DP Filtro de aceite' type='number' step=".01" />
+                        </div>
+
+                        <div v-if="form.productId == 55 || form.productId == 56">
+                            <Input v-model.number='form.intercooler' placeholder='Ingresa Refrigerador intermedio'
+                                label='Refrigerador intermedio' type='number' step=".01" />
+                        </div>
+
+                        <div v-if="form.productId == 55 || form.productId == 56">
+                            <Input v-model.number='form.outputElementOne' placeholder='Ingresa Salida elemento 1'
+                                label='Salida elemento 1' type='number' step=".01" />
+                        </div>
+
+                        <div v-if="form.productId == 55 || form.productId == 56">
+                            <Input v-model.number='form.entryElementTwo' placeholder='Ingresa Entrada elemento 2'
+                                label='Entrada elemento 2' type='number' step=".01" />
+                        </div>
+
+                        <div v-if="form.productId == 56">
+                            <Input v-model.number='form.outputElementTwo' placeholder='Ingresa Salida elemento 2'
+                                label='Salida elemento 2' type='number' step=".01" />
+                        </div>
+
+                        <div v-if="form.productId == 55 || form.productId == 56">
+                            <Input v-model.number='form.compressorOutlet' placeholder='Ingresa Salida del compresor'
+                                label='Salida del compresor' type='number' step=".01" />
+                        </div>
+
+                        <div v-if="form.productId == 55 || form.productId == 56">
+                            <Input v-model.number='form.entryDryer' placeholder='Ingresa Entrada al secador'
+                                label='Entrada al secador' type='number' step=".01" />
+                        </div>
+
+                        <div v-if="form.productId == 55">
+                            <Input v-model.number='form.regeneration' placeholder='Ingresa Regeneración'
+                                label='Regeneración' type='number' step=".01" />
+                        </div>
+
+                        <div v-if="form.productId == 55">
+                            <Input v-model.number='form.deltaT' placeholder='Ingresa Delta T del elemento'
+                                label='Delta T del elemento' type='number' step=".01" />
+                        </div>
+
+                        <div v-if="form.productId == 56">
+                            <Input v-model.number='form.oilInjection' placeholder='Ingresa Inyección de aceite'
+                                label='Inyección de aceite' type='number' step=".01" />
+                        </div>
+
+                        <div v-if="form.productId == 56">
+                            <Input v-model.number='form.variatorCabinetTemperature'
+                                placeholder='Ingresa Temperatura armario variador' label='Temperatura armario variador'
+                                type='number' step=".01" />
+                        </div>
+
                         <div>
                             <Textarea v-model.trim='form.observations' rows='4' placeholder='Ingresa Observaciones'
                                 label='Observaciones' />
