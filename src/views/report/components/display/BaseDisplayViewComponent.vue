@@ -35,6 +35,8 @@ const showModal = () => {
 
 const pdfName = ref(undefined);
 
+// const rows = ref(undefined);
+
 // keep up with form data
 const form = ref({});
 
@@ -47,6 +49,7 @@ const getById = async () => {
         form.value = response;
         pdfName.value = `report-${form.value.customerName}-${form.value.brandName}-${form.value.productName}-${form.value.productByCustomerSerialKey}-${form.value.visitDate}`;
         loading.value = false;
+        // countRows();
     } catch (error) {
         loading.value = false;
         alert(error.message);
@@ -68,11 +71,11 @@ const deleteItem = async () => {
 const exportToPDF = async () => {
     try {
         html2pdf(document.getElementById('report'), {
-            margin: 0,
+            margin: 1,
             filename: `${pdfName.value}.pdf`,
-            image: { type: 'jpeg', quality: 0.20 },
+            image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { scale: 2, useCORS: true },
-            jsPDF: { unit: 'in', format: 'a4', orientation: 'p' }
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         });
 
         closeModal();
@@ -81,6 +84,16 @@ const exportToPDF = async () => {
         alert(error.message);
     }
 };
+
+// const countRows = () => {
+//     rows.value = 0;
+
+//     for (const [key, value] of Object.entries(form.value)) {
+//              if (value) {
+//                 rows.value++;
+//              }
+//         };
+// }
 
 const update = () => {
     router.push({ name: "ReportEditorViewComponent", params: { Id: props.id }, });
@@ -313,19 +326,119 @@ onMounted(() => {
                                     Intl.NumberFormat("en-US").format(form.vsd80100) }}
                                 </td>
                             </tr>
+                            <tr class='border-b border-gray-200' v-if='form.moduleHours'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Horas módulo</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.moduleHours) }}
+                                </td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.oilPressure'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Presión de aceite</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.oilPressure) }}
+                                </td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.dpOilFilter'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>DP Filtro de aceite</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.dpOilFilter) }}
+                                </td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.intercooler'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Refrigerador intermedio</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.intercooler) }}
+                                </td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.outputElementOne'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Salida elemento 1</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.outputElementOne) }}
+                                </td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.entryElementTwo'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Entrada elemento 2</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.entryElementTwo) }}
+                                </td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.outputElementTwo'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Salida elemento 2</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.outputElementTwo) }}
+                                </td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.compressorOutlet'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Salida del compresor</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.compressorOutlet) }}
+                                </td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.entryDryer'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Entrada al secador</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.entryDryer) }}
+                                </td>
+                            </tr>
+                            <tr class='border-b border-gray-200' v-if='form.regeneration'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Regeneración</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.regeneration) }}
+                                </td>
+                            </tr>
+
+                            <tr class='border-b border-gray-200' v-if='form.deltaT'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Delta T del elemento</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.deltaT) }}
+                                </td>
+                            </tr>
+
+                            <tr class='border-b border-gray-200' v-if='form.oilInjection'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Inyección de aceite</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.oilInjection) }}
+                                </td>
+                            </tr>
+
+                            <tr class='border-b border-gray-200' v-if='form.variatorCabinetTemperature'>
+                                <td class='max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0'>
+                                    <div class='font-medium text-gray-900'>Temperatura armario variador</div>
+                                </td>
+                                <td class='py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0'>{{ new
+                                    Intl.NumberFormat("en-US").format(form.variatorCabinetTemperature) }}
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
 
-                    <div class='text-left mt-32' v-if="form.observations && form.productDynamicPercentage">
-                        <p>
-                            Observaciones
-                        </p>
-                        <p class='text-gray-500 text-sm'>
-                            {{ form.observations }}
-                        </p>
-                    </div>
+                    <div class="html2pdf__page-break"></div>
 
-                    <div class='text-left mt-2' v-if="form.observations && !form.productDynamicPercentage">
+                    <div class='text-left mt-2' v-if="form.observations">
                     <p>
                         Observaciones
                     </p>
