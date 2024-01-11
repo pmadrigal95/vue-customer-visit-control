@@ -14,7 +14,7 @@ import { Modal, Input } from 'flowbite-vue';
 
 import BaseSkeletonLoader from '@/components/core/loaders/BaseSkeletonLoader.vue';
 
-import BaseSendEmailTemplateViewComponent from '@/views/report/components/display/BaseSendEmailTemplateViewComponent.vue';
+// import BaseSendEmailTemplateViewComponent from '@/views/report/components/display/BaseSendEmailTemplateViewComponent.vue';
 
 const props = defineProps({
     id: {
@@ -145,7 +145,7 @@ onMounted(() => {
                     class='text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center'>
                     Descargar
                 </button>
-                <BaseSendEmailTemplateViewComponent :entity="form" />
+                <!-- <BaseSendEmailTemplateViewComponent :entity="form" /> -->
                 <button @click="update"
                     class='text-white bg-blue800 hover:bg-blue900 focus:ring-4 focus:outline-none focus:ring-orange900 first-letter:font-medium rounded-lg text-sm px-5 py-2.5 text-center'>
                     Editar
