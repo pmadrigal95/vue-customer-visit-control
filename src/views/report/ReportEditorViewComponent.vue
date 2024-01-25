@@ -228,11 +228,11 @@ onMounted(() => {
                         </div>
 
                         <div>
-                            <Textarea v-model.trim='form.observations' rows='4' placeholder='Ingresa Observaciones'
+                            <Textarea v-model='form.observations' rows='4' placeholder='Ingresa Observaciones'
                                 label='Observaciones' />
                         </div>
                         <div>
-                            <Textarea v-model.trim='form.notes' rows='4' placeholder='Ingresa notas' label='Notas' />
+                            <Textarea v-model='form.notes' rows='4' placeholder='Ingresa notas' label='Notas' />
                         </div>
                         <div>
                             <button type='submit'
